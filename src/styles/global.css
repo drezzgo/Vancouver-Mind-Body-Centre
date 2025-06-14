@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+    --color-gym-50: #ffe5e7;
+    --color-gym-100: #fcbfc3;
+    --color-gym-200: #f58f95;
+    --color-gym-300: #f1606a;
+    --color-gym-400: #ec3e4a;
+    --color-gym-500: #e83d47;
+    --color-gym-600: #d2343e;
+    --color-gym-700: #b42c35;
+    --color-gym-800: #93232a;
+    --color-gym-900: #70191f;
+
+    --color-dark: #0e0f11;
+}

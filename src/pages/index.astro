@@ -1,11 +1,34 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Warning from "../components/Warning.astro";
+import ScrollSection from "../components/ScrollSection.astro";
+import {scrollSections} from "../data/scrollSections.ts";
 ---
 
 <Layout>
-	<Welcome />
+  <Warning />
+  <section class="relative overflow-hidden" x-data="{ mobileNavOpen: false }">
+    <Header />
+    <div
+      class="overflow-y-auto overflow-x-hidden scroll-smooth"
+    >
+      {scrollSections.map((section) => <ScrollSection {...section} />)}
+
+      <div
+        class="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-50"
+      >
+        {
+          scrollSections.map((_, idx) => (
+            <button
+              onclick={`document.querySelectorAll('.scroll-section')[${idx}].scrollIntoView({ behavior: 'smooth' })`}
+              class="w-3 h-3 rounded-full bg-white/20 hover:bg-white transition-colors hover:scale-150"
+              title={`Go to section ${idx + 1}`}
+            />
+          ))
+        }
+      </div>
+    </div>
+
+    
 </Layout>
