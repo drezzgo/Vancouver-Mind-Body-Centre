@@ -1,64 +1,76 @@
 ---
-import { Image } from "astro:assets";
-import logo from "../assets/logo.webp";
-import { headerData } from "../data/headerData"
+import { Image } from 'astro:assets';
+import logo from '../assets/LogoVancouver.svg';
+
+const title = "Vancouver Mind Body Centre";
+const subtitle = "Group Fitness | Personal Training | Martial Arts";
+const cta = {
+  label: "Non sit et",
+  href: "#form-container",
+  aria: "Reserva tu clase gratuita en Vancouver Mind Body"
+};
 ---
 
-<div class="container px-4 mx-auto pb-5">
-  <div class="flex items-center justify-between pt-6 -m-2">
-    <div class="w-auto p-2">
-      <div class="flex flex-wrap items-center">
-        <div class="w-auto">
-          <a class="relative z-10 inline-block" href="index.html"
-            ><logo/></a>
-        </div>
+<header
+  class="w-full border-b border-gray-200 bg-white dark:bg-dark text-gray-900 dark:text-white"
+  role="banner"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between flex-wrap gap-y-4">
+    
+    <!-- Marca -->
+    <div class="flex items-center gap-5 logo-brand flex-wrap">
+      <Image
+        src={logo}
+        alt="Logo de Vancouver Mind Body"
+        width={200}
+        class="dark:invert size-12"
+        loading="eager"
+      />
+      <div class="flex flex-col">
+        <h1 class="font-bold text-2xl sm:text-3xl leading-tight">{title}</h1>
+        <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300">{subtitle}</p>
       </div>
     </div>
-    <div class="w-auto p-2">
-      <div class="flex flex-wrap items-center">
-        <div class="w-auto hidden lg:block">
-          <ul class="flex items-center mr-12">
-            <li
-              class="mr-12 text-white font-medium hover:text-opacity-90 tracking-tighter"
-            >
-              <a href="about.html">About</a>
-            </li>
-            <li
-              class="mr-12 text-white font-medium hover:text-opacity-90 tracking-tighter"
-            >
-              <a href="pricing.html">Pricing</a>
-            </li>
-            <li
-              class="mr-12 text-white font-medium hover:text-opacity-90 tracking-tighter"
-            >
-              <a href="blog.html">Blog</a>
-            </li>
-            <li
-              class="text-white font-medium hover:text-opacity-90 tracking-tighter"
-            >
-              <a href="contact.html">Contact</a>
-            </li>
-          </ul>
-        </div>
-        <div class="w-auto hidden lg:block">
-          <div class="inline-block">
-            <a
-              class="inline-block px-8 py-4 text-white hover:text-black tracking-tighter hover:bg-green-400 border-2 border-white focus:border-green-400 focus:border-opacity-40 hover:border-green-400 focus:ring-4 focus:ring-green-400 focus:ring-opacity-40 rounded-full transition duration-300"
-              href="login.html">Login</a>
-          </div>
-        </div>
-        <div class="w-auto lg:hidden">
-          <button
-            class="relative z-10 inline-block"
-            x-on:click="mobileNavOpen = !mobileNavOpen"
-          >
-            <Image
-              src={logo}
-              alt="Menu Icon"
-              class="w-8 h-8"/>
-          </button>
-        </div>
-      </div>
+
+    <!-- CTA -->
+    <div class="flex items-center gap-4">
+      <a
+        id="hero-button"
+        href={cta.href}
+        class="relative inline-flex items-center justify-center 
+          bg-gradient-to-r from-gym-500 to-red-500
+          text-white font-semibold text-sm sm:text-base 
+          py-2 sm:py-3 px-6 sm:px-8 rounded-lg 
+          shadow-lg overflow-hidden
+          transition-transform duration-300 ease-in-out
+          hover:scale-105 hover:shadow-2xl"
+        aria-label={cta.aria}
+      >
+        <span class="relative z-10">{cta.label}</span>
+      </a>
     </div>
   </div>
-</div>
+</header>
+
+<!-- ✅ GSAP animación directa -->
+<script type="module">
+  import { gsap } from 'https://cdn.skypack.dev/gsap';
+
+  console.log("✅ GSAP: Header animation running");
+
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1 } });
+
+  tl.from('header', {
+    y: -50,
+    opacity: 0,
+  })
+  .from('.logo-brand', {
+    x: -40,
+    opacity: 0,
+  }, '<+=0.2')
+  .from('nav a', {
+    y: -10,
+    opacity: 0,
+    stagger: 0.1,
+  }, '<');
+</script>

@@ -13,4 +13,33 @@
     --color-gym-900: #70191f;
 
     --color-dark: #0e0f11;
+
+    --font-body: 'Inter', 'sistem-ui', sans-serif;
+    --font-heading: 'Inter', 'sistem-ui', sans-serif;
+
+    @keyframes scroll {
+        0% {
+        transform: translateX(0%);
+        }
+        95% {
+        transform: translateX(-95%);
+        }
+    }
+
+    @keyframes scrollReverse {
+        0% {
+        transform: translateX(-55%);
+        }
+        95% {
+        transform: translateX(55%);
+        }
+    }
+
+    @animation scroll {
+        animation: scroll 100s linear infinite;
+    }
+
+    @animation scrollReverse {
+        animation: scrollReverse 100s linear infinite;
+    }
 }
