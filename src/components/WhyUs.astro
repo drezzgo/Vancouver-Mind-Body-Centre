@@ -36,13 +36,14 @@ const features = [
       {
         features.map((f, i) => (
           <div class="feature-card bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md transition hover:shadow-xl flex flex-col items-center justify-center" style="opacity: 0; aspect-ratio: 1 / 1;" id={`feature-${i}`}>
-            <div class="mb-4 ">
-                <img
-                  src={f.icon.src}
-                  alt={f.title}
-                  class="w-16 h-16 mb-4 dark:invert"
-                  loading="lazy"
-                />
+            <div class="mb-4">
+              <img
+              src={f.icon.src}
+              alt={f.title}
+              class="w-16 h-16 mb-4 dark:invert"
+              loading="lazy"
+              style=""
+              />
             </div>
             <h3 class="text-xl font-semibold mb-2">{f.title}</h3>
             <p class="text-gray-600 dark:text-gray-400 text-sm text-center">{f.text}</p>
