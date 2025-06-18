@@ -1,76 +1,62 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/LogoVancouver.svg';
-
-const title = "Vancouver Mind Body Centre";
-const subtitle = "Group Fitness | Personal Training | Martial Arts";
-const cta = {
-  label: "Non sit et",
-  href: "#form-container",
-  aria: "Reserva tu clase gratuita en Vancouver Mind Body"
-};
+import NavLink from './NavLink.astro';
 ---
 
-<header
-  class="w-full border-b border-gray-200 bg-white dark:bg-dark text-gray-900 dark:text-white"
-  role="banner"
->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between flex-wrap gap-y-4">
+<header class="w-full flex justify-center gap-0.5 fixed top-0 z-50">
     
-    <!-- Marca -->
-    <div class="flex items-center gap-5 logo-brand flex-wrap">
-      <Image
+    <div class="p-2 bg-dark dark:bg-white rounded-full">
+    <Image
+        id="isotype"
         src={logo}
         alt="Logo de Vancouver Mind Body"
         width={200}
-        class="dark:invert size-12"
+        class="not-dark:invert size-6 "
         loading="eager"
       />
-      <div class="flex flex-col">
-        <h1 class="font-bold text-2xl sm:text-3xl leading-tight">{title}</h1>
-        <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300">{subtitle}</p>
-      </div>
-    </div>
 
-    <!-- CTA -->
-    <div class="flex items-center gap-4">
-      <a
-        id="hero-button"
-        href={cta.href}
-        class="relative inline-flex items-center justify-center 
-          bg-gradient-to-r from-gym-500 to-red-500
-          text-white font-semibold text-sm sm:text-base 
-          py-2 sm:py-3 px-6 sm:px-8 rounded-lg 
-          shadow-lg overflow-hidden
-          transition-transform duration-300 ease-in-out
-          hover:scale-105 hover:shadow-2xl"
-        aria-label={cta.aria}
-      >
-        <span class="relative z-10">{cta.label}</span>
-      </a>
     </div>
-  </div>
+    <div class="flex gap-0.5 px-0.5 bg-dark dark:bg-white text-sm font-semibold dark:text-white rounded-full">
+        <NavLink href="#home" label="Home" />
+        <NavLink href="#about" label="About Us" />
+        <NavLink href="#services" label="Services" />
+        <NavLink href="#contact" label="Contact" />
+    </div>
+    <div class="flex gap-0.5 px-0.5 bg-dark dark:bg-white text-sm font-semibold text-white rounded-full">
+        <button
+            type="button"
+            class="group relative flex items-center px-5 my-0.5 bg-algae-500 text-white rounded-full transition-all duration-300 ease-in-out hover:bg-algae-600 hover:shadow-md overflow-hidden"
+        >
+            <span class="relative z-10 transition-transform">
+                TRY NOW
+            </span>
+            <span class="absolute left-5 bottom-1 h-[2px] w-0 bg-white group-hover:w-[calc(100%-2.5rem)] rounded-full transition-all duration-300 ease-in-out"></span>
+        </button>
+    </div>
 </header>
 
-<!-- ✅ GSAP animación directa -->
-<script type="module">
-  import { gsap } from 'https://cdn.skypack.dev/gsap';
+<script>
+    import gsap from 'gsap';
 
-  console.log("✅ GSAP: Header animation running");
+    const logo = document.getElementById('isotype');
 
-  const tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1 } });
-
-  tl.from('header', {
-    y: -50,
-    opacity: 0,
-  })
-  .from('.logo-brand', {
-    x: -40,
-    opacity: 0,
-  }, '<+=0.2')
-  .from('nav a', {
-    y: -10,
-    opacity: 0,
-    stagger: 0.1,
-  }, '<');
+    logo.addEventListener('mouseenter', () => {
+    gsap.to(logo,
+        {
+        rotate: 180,
+        duration: 0.8,
+        ease: 'power2.out'
+        }
+    );
+    });
+    logo.addEventListener('mouseleave', () => {
+        gsap.to(logo,
+        {
+            rotate: 0,
+            duration: 0.8,
+            ease: 'power2.out'
+        }
+        );
+    });
 </script>

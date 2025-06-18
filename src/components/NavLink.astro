@@ -1,0 +1,21 @@
+---
+// src/components/NavLink.astro
+export interface Props {
+  href: string;
+  label: string;
+}
+
+const { href, label } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group relative flex items-center px-5 my-0.5 bg-white dark:bg-dark text-dark dark:text-white font-semibold rounded-full overflow-hidden transition-colors"
+>
+  <span class="relative z-10">
+    {label}
+  </span>
+  <span
+    class="absolute left-5 bottom-1 h-[2px] w-0 bg-dark dark:bg-white rounded-full transition-all duration-300 ease-in-out group-hover:w-[calc(100%-2.5rem)]"
+  ></span>
+</a>

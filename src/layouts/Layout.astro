@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import Header from '../components/Header.astro';
+import Header from '@/components/Header.astro';
 ---
 
 <!DOCTYPE html>
@@ -16,7 +16,9 @@ import Header from '../components/Header.astro';
 	<meta name="google-site-verification" content="x1gL-GaduWiV_eXPJrzy_3lOfGCUf5cFAhEg5jnkgmo"/>
 </head>
   <body class="antialiased bg-white text-gray-900 dark:bg-dark dark:text-white">
-    <Header />
-    <slot />
+	<Header />
+	<main class="pt-52">
+    	<slot />
+	</main>
   </body>
 </html>

@@ -1,6 +1,25 @@
 @import "tailwindcss";
 
+@font-face {
+    font-family: 'Geist';
+    src: url('/fonts/geist/geist-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
 @theme {
+    --color-algae-50: #eefbf5;
+    --color-algae-100: #d7f4e6;
+    --color-algae-200: #98e1c2;
+    --color-algae-300: #7fd6b7;
+    --color-algae-400: #4abd97;
+    --color-algae-500: #27a27d;
+    --color-algae-600: #198265;
+    --color-algae-700: #146853;
+    --color-algae-800: #125343;
+    --color-algae-900: #104438;
+    --color-algae-950: #082620;
+
     --color-gym-50: #ffe5e7;
     --color-gym-100: #fcbfc3;
     --color-gym-200: #f58f95;
@@ -14,6 +33,6 @@
 
     --color-dark: #0e0f11;
 
-    --font-body: 'Inter', 'sistem-ui', sans-serif;
-    --font-heading: 'Inter', 'sistem-ui', sans-serif;
+    --font-body: 'Geist', 'Inter', 'sistem-ui', sans-serif;
+    --font-heading: 'Geist','Inter', 'sistem-ui', sans-serif;
 }
