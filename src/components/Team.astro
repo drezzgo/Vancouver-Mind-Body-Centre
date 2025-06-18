@@ -29,130 +29,52 @@ const members = [
 ];
 ---
 
-<section class="grid grid-cols-4">
-  <div class="col-span-2 ">
-    <h2 class="text-3xl font-bold mb-4">Join Our Team</h2>
-    <p class="text-gray-600 dark:text-gray-300 mb-6">
-      We are always looking for talented individuals to join our team. If you are passionate about what you do and want to make a difference, we would love to hear from you.
+<section id="team" class="w-full px-16 py-24 grid grid-cols-4">
+  <div class="col-span-2 flex flex-col justify-center">
+    <h2 class="text-4xl font-extrabold mb-4">Join Our Team</h2>
+    <p class="text-gray-600 dark:text-gray-300 mb-6 font-medium">
+      Enim esse do dolore commodo ullamco adipisicing dolor aliqua magna sint occaecat. Veniam cillum sit nulla consectetur do ut. Eiusmod dolor enim dolor et labore. Commodo quis occaecat incididunt irure.
     </p>
-    <a href="#form-container" class="inline-flex text-cm-500 hover:underline font-medium">
-      Apply Now ↗
+    <a href="#form-container" class="inline-flex text-cm-500 hover:underline font-semibold">
+      In sit adipisicing laborum est commodo. ↗
     </a>
   </div>
-  <div class="relative aspect-square w-full h-full">
-    <img
-      src={members[0].image}
-      alt={members[0].name}
-      class="object-cover w-full h-full"
-      sizes="(min-width: 1024px) 25vw, 50vw"
-      loading="lazy"
-    />
-  </div>
-  <div class="relative aspect-square w-full h-full">
-    <img
-      src={members[0].image}
-      alt={members[0].name}
-      class="object-cover w-full h-full"
-      sizes="(min-width: 1024px) 25vw, 50vw"
-      loading="lazy"
-    />
-  </div>
-  <div class="m-10">
-    <h2 class="text-3xl font-bold mb-4">Join Our Team</h2>
-    <p class="text-gray-600 dark:text-gray-300 mb-6">
-      We are always looking for talented individuals to join our team. If you are passionate about what you do and want to make a difference, we would love to hear from you.
-    </p>
-    <a href="#form-container" class="inline-flex text-cm-500 hover:underline font-medium">
-      Apply Now ↗
-    </a>
-  </div>
-  <div class="relative aspect-square w-full h-full">
-    <img
-      src={members[0].image}
-      alt={members[0].name}
-      class="object-cover w-full h-full"
-      sizes="(min-width: 1024px) 25vw, 50vw"
-      loading="lazy"
-    />
-  </div>
-  <div class="relative aspect-square w-full h-full">
-    <img
-      src={members[0].image}
-      alt={members[0].name}
-      class="object-cover w-full h-full"
-      sizes="(min-width: 1024px) 25vw, 50vw"
-      loading="lazy"
-    />
-  </div>
-  <div class="relative aspect-square w-full h-full">
-    <img
-      src={members[0].image}
-      alt={members[0].name}
-      class="object-cover w-full h-full"
-      sizes="(min-width: 1024px) 25vw, 50vw"
-      loading="lazy"
-    />
-  </div>
-</section>
 
-<section id="team" class="w-full bg-gray-100 dark:bg-dark py-24 text-gray-900 dark:text-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid md:grid-cols-5 gap-8 items-start">
-      
-      <!-- Text content -->
-      <div class="md:col-span-2 space-y-4">
-        <h2 class="text-3xl font-bold sm:text-4xl">Meet the Team</h2>
-        <p class="text-gray-600 dark:text-gray-300 text-base">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis, optio.
-        </p>
-        <a href="#form-container" class="inline-flex text-cm-500 hover:underline font-medium">
-          See All Members ↗
-        </a>
-      </div>
-
-      <!-- Members -->
-      <div class="md:col-span-3 grid grid-cols-2 gap-4">
-        {
-          members.map((member, index) => (
-            <div class="relative rounded-lg overflow-hidden shadow-md group member-card" id={`member-${index}`}>
-              <img src={member.image} alt={member.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-              <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 via-black/40 to-transparent p-4">
-                <h3 class="text-white font-semibold text-sm">{member.name}</h3>
-                <p class="text-white/80 text-xs">{member.role}</p>
-              </div>
-            </div>
-          ))
-        }
-      </div>
+  {members.slice(0, 2).map((member, i) => (
+    <div
+      id={`member-${i}`}
+      class={`overflow-hidden aspect-square shadow-md transition-transform duration-300 ease-in-out hover:scale-105 ${i === 1 ? 'rounded-tr-2xl' : ''}`}
+    >
+      <img
+        src={member.image}
+        alt={member.name}
+        class="w-full h-full object-cover"
+        loading="lazy"
+      />
     </div>
+  ))}
+
+  <div class="col-span-1 flex flex-col justify-center">
+    <h2 class="text-3xl font-bold mb-4">Qui dolor occaecat.</h2>
+    <p class="text-gray-600 dark:text-gray-300 mb-6 font-medium">
+      Esse irure reprehenderit dolor deserunt duis et proident irure commodo do.
+    </p>
+    <a href="#form-container" class="inline-flex text-cm-500 hover:underline font-semibold">
+      Edipisicing ad. ↗
+    </a>
   </div>
+
+  {members.slice(2).map((member, i) => (
+    <div
+      id={`member-${i + 2}`}
+      class={`overflow-hidden aspect-square shadow-md transition-transform duration-300 ease-in-out hover:scale-105 ${i === 2 ? 'rounded-br-2xl' : ''}`}
+    >
+      <img
+        src={member.image}
+        alt={member.name}
+        class="w-full h-full object-cover"
+        loading="lazy"
+      />
+    </div>
+  ))}
 </section>
-
-<script type="module">
-  import { gsap } from 'https://cdn.skypack.dev/gsap';
-
-  gsap.from("#team h2", {
-    y: 30,
-    opacity: 0,
-    duration: 1,
-    ease: "power2.out"
-  });
-
-  gsap.from("#team p", {
-    y: 20,
-    opacity: 0,
-    delay: 0.2,
-    duration: 0.8
-  });
-
-  // Animar cada miembro del equipo
-  for (let i = 0; i < 5; i++) {
-    gsap.from(`#member-${i}`, {
-      opacity: 0,
-      y: 30,
-      delay: 0.4 + i * 0.2,
-      duration: 0.8,
-      ease: "power2.out"
-    });
-  }
-</script>
