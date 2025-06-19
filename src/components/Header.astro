@@ -7,7 +7,7 @@ const {
   navLinks = [
     { href: '#home', label: 'Home' },
     { href: '#about', label: 'About Us' },
-    { href: '#services', label: 'Steps' },
+    { href: '#steps', label: 'Steps' },
     { href: '#team', label: 'Team' },
   ],
   ctaLabel = 'TRY NOW',
@@ -41,6 +41,7 @@ const {
         <button
         type="button"
         class="group relative flex items-center px-5 my-0.5 bg-gym-500 text-white rounded-full transition-all duration-300 ease-in-out hover:bg-gym-600 hover:shadow-md overflow-hidden"
+        id="cta-btn"
         >
         <span class="relative z-10 transition-transform">
             {ctaLabel}
@@ -48,4 +49,11 @@ const {
         <span class="absolute left-5 bottom-1 h-[2px] w-0 bg-white group-hover:w-[calc(100%-2.5rem)] rounded-full transition-all duration-300 ease-in-out"></span>
         </button>
     </div>
-</header>
+    <script type="module">
+      document.getElementById('cta-btn')?.addEventListener('click', () => {
+        const el = document.getElementById('form-container');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    </script>

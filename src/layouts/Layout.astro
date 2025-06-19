@@ -5,28 +5,67 @@ import Header from '@/components/Header.astro';
 
 <!DOCTYPE html>
 <html lang="en" class="">
-<head>
-  	<meta charset="UTF-8" />
-  	<meta name="viewport" content="width=device-width, initial-scale=1" />
-  	<title>Vancouver MindBody | Tu transformación empieza aquí</title>
-  	<meta name="description" content="Entrena con los mejores. Reserva tu clase gratuita en Vancouver MindBody: fitness, artes marciales y entrenamiento personalizado." />
-  	<meta name="theme-color" content="#e83d47" />
-  	<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  	<meta name="generator" content={Astro.generator} />
-	<meta name="google-site-verification" content="x1gL-GaduWiV_eXPJrzy_3lOfGCUf5cFAhEg5jnkgmo"/>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	
+    
+    <!-- Title y Description -->
+    <title>Vancouver MindBody | Personal Training & Martial Arts Studio</title>
+    <meta name="description" content="Join Vancouver MindBody Centre on Main Street for expert coaching in strength, mobility and martial arts. Book your free trial today." />
+
+    <!-- Keywords -->
+    <meta name="keywords" content="fitness Vancouver, personal training, martial arts, strength training, adult classes, mobility, free trial" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://vancouvermindbody.com/" />
+
+    <!-- Open Graph (Facebook, LinkedIn) -->
+    <meta property="og:title" content="Vancouver MindBody | Personal Training & Martial Arts Studio" />
+    <meta property="og:description" content="Expert-led strength and mobility classes for adults. Clean space. Serious coaching. Free trial available." />
+    <meta property="og:image" content="https://vancouvermindbody.ca/og-image.jpg" />
+    <meta property="og:url" content="https://vancouvermindbody.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_CA" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vancouver MindBody | Personal Training & Martial Arts Studio" />
+    <meta name="twitter:description" content="Join a community focused on strength, mobility and well-being." />
+    <meta name="twitter:image" content="https://vancouvermindbody.ca/og-image.jpg" />
+
+    <!-- Favicon & Color -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#e83d47" />
+
+    <!-- Search Console Verification -->
+    <meta name="google-site-verification" content="x1gL-GaduWiV_eXPJrzy_3lOfGCUf5cFAhEg5jnkgmo" />
+
+    <!-- Generator y Language -->
+    <meta name="generator" content={Astro.generator} />
+  </head>
+
   <body class="antialiased bg-white text-gray-900 dark:bg-dark dark:text-white">
-	<Header 
-		navLinks={[
-			{ href: '#home', label: 'Home' },
-			{ href: '#about', label: 'About Us' },
-			{ href: '#service', label: 'Steps' },
-			{ href: '#team', label: 'Team' },
-		]}
-		ctaLabel="TRY NOW"
-	/>
-	<main class="pt-20">
-    	<slot />
-	</main>
+    <header>
+      <Header 
+        navLinks={[
+          { href: '#Hero', label: 'Home' },
+          { href: '#about', label: 'About Us' },
+          { href: '#steps', label: 'Steps' },
+          { href: '#team', label: 'Team' },
+        ]}
+        ctaLabel="TRY NOW"
+      />
+    </header>
+
+    <main id="main-content" class="pt-20">
+      <slot />
+    </main>
+
+    <!-- Optionally: include footer here -->
+    <!-- <footer>...</footer> -->
   </body>
 </html>
