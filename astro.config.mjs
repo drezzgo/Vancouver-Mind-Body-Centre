@@ -10,6 +10,12 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
-
-  integrations: [sitemap()]
+  site: 'https://vancouvermindbody.site',
+  integrations: [sitemap(
+    {
+      changefreq: 'weekly',
+      priority: 1.0,
+      lastmod: new Date('2025-06-19'),
+    }
+  )]
 });
