@@ -57,3 +57,27 @@ const {
         }
       });
     </script>
+<script>
+  import gsap from 'gsap';
+
+    const logo = document.getElementById('isotype');
+
+    logo.addEventListener('mouseenter', () => {
+    gsap.to(logo,
+        {
+        rotate: 180,
+        duration: 0.8,
+        ease: 'power2.out'
+        }
+    );
+    });
+    logo.addEventListener('mouseleave', () => {
+        gsap.to(logo,
+        {
+            rotate: 0,
+            duration: 0.8,
+            ease: 'power2.out'
+        }
+        );
+    });
+</script>
