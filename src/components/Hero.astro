@@ -1,27 +1,48 @@
-<section class="w-full px-16 flex flex-col gap-10">
-  <div class="w-1/2">
-    <h1 class="text-7xl font-extrabold">
-      VANCOUVER<br/>
-      MIND BODY CENTRE
-    </h1>
-    <p class="text-2xl mt-4 font-semibold">
-      Group Fitness | Personal Training | Martial Arts
+---
+const {
+  title = 'VANCOUVER<br/>MIND BODY CENTRE',
+  subtitle = 'Group Fitness | Personal Training | Martial Arts',
+  description = 'Quis id ex adipisicing tempor id aliqua sit eu voluptate irure...',
+  sectionId = 'team'
+} = Astro.props;
+---
+
+<section id={sectionId} class="w-full px-4 sm:px-10 md:px-16 py-20 flex flex-col gap-10">
+  <div class="w-full md:w-1/2">
+    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight [&>br]:hidden sm:[&>br]:block" set:html={title} />
+    <p class="text-lg sm:text-xl md:text-2xl mt-4 font-semibold text-gray-800 dark:text-gray-200">{subtitle}</p>
+  </div>
+
+  <div class="w-full flex justify-center md:justify-end">
+    <p class="w-full sm:w-2/3 md:w-1/2 lg:w-1/3 text-justify indent-6 font-semibold text-gray-700 dark:text-gray-300">
+      {description}
     </p>
   </div>
-  <div class="w-full flex justify-end">
-    <p class="w-1/3 text-justify indent-6 font-semibold">
-      Quis id ex adipisicing tempor id aliqua sit eu voluptate irure. Laboris qui ut incididunt laboris. Ad elit incididunt proident laboris commodo. Exercitation dolore est magna irure. 
-    </p>
-  </div>
+
   <div class="mt-12 flex justify-center">
-    <svg  id="scroll-arrow" xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-compact-down"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 11l8 3l8 -3" /></svg>
+    <svg
+      id="scroll-arrow"
+      xmlns="http://www.w3.org/2000/svg"
+      width="36"
+      height="36"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="animate-pulse text-gray-600 dark:text-gray-300"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M4 11l8 3l8 -3" />
+    </svg>
   </div>
 </section>
 
-
-<!-- GSAP Animation -->
+<!-- GSAP Script (solo en cliente) -->
 <script>
   import gsap from 'gsap';
+
   gsap.to("#scroll-arrow", {
     y: 10,
     repeat: -1,

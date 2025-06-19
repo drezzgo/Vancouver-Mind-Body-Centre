@@ -2,6 +2,18 @@
 import { Image } from 'astro:assets';
 import logo from '../assets/LogoVancouver.svg';
 import NavLink from './NavLink.astro';
+
+const {
+  navLinks = [
+    { href: '#home', label: 'Home' },
+    { href: '#about', label: 'About Us' },
+    { href: '#services', label: 'Steps' },
+    { href: '#team', label: 'Team' },
+  ],
+  ctaLabel = 'TRY NOW',
+  logoSize = 24,
+} = Astro.props;
+---
 ---
 
 <header class="w-full flex justify-center gap-0.5 fixed top-0 z-50">
@@ -11,27 +23,29 @@ import NavLink from './NavLink.astro';
         id="isotype"
         src={logo}
         alt="Logo de Vancouver Mind Body"
-        width={200}
-        class="not-dark:invert size-6 "
+        width={logoSize}
+        class="not-dark:invert size-6 sm:size-7"
         loading="eager"
       />
 
     </div>
-    <div class="flex gap-0.5 px-0.5 bg-dark dark:bg-white text-sm font-semibold dark:text-white rounded-full">
-        <NavLink href="#home" label="Home" />
-        <NavLink href="#about" label="About Us" />
-        <NavLink href="#services" label="Steps" />
-        <NavLink href="#team" label="Team" />
-    </div>
+    <!-- Navegación -->
+    <nav class="flex gap-0.5 px-0.5 bg-dark dark:bg-white text-xs sm:text-sm font-semibold dark:text-white rounded-full">
+        {navLinks.map(({ href, label }) => (
+        <NavLink href={href} label={label} />
+        ))}
+    </nav>
+    
+    <!-- CTA Button -->
     <div class="flex gap-0.5 px-0.5 bg-dark dark:bg-white text-sm font-semibold text-white rounded-full">
         <button
-            type="button"
-            class="group relative flex items-center px-5 my-0.5 bg-gym-500 text-white rounded-full transition-all duration-300 ease-in-out hover:bg-gym-600 hover:shadow-md overflow-hidden"
+        type="button"
+        class="group relative flex items-center px-5 my-0.5 bg-gym-500 text-white rounded-full transition-all duration-300 ease-in-out hover:bg-gym-600 hover:shadow-md overflow-hidden"
         >
-            <span class="relative z-10 transition-transform">
-                TRY NOW
-            </span>
-            <span class="absolute left-5 bottom-1 h-[2px] w-0 bg-white group-hover:w-[calc(100%-2.5rem)] rounded-full transition-all duration-300 ease-in-out"></span>
+        <span class="relative z-10 transition-transform">
+            {ctaLabel}
+        </span>
+        <span class="absolute left-5 bottom-1 h-[2px] w-0 bg-white group-hover:w-[calc(100%-2.5rem)] rounded-full transition-all duration-300 ease-in-out"></span>
         </button>
     </div>
 </header>

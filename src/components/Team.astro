@@ -1,42 +1,36 @@
 ---
 import { Image } from 'astro:assets';
+
+import Kyle from '../assets/images/team/kyle.webp';
+import Natan from '../assets/images/team/natan.webp';
+import Ryan from '../assets/images/team/ryan.webp';
+import Tim from '../assets/images/team/tim.webp';
+import Yelena from '../assets/images/team/yelena.webp';
+
+const {
+  title = 'Join Our Team',
+  subtitle = 'Enim esse do dolore commodo ullamco adipisicing dolor aliqua magna sint occaecat...',
+  ctaText = 'In sit adipisicing laborum est commodo. ↗',
+  sectionId = 'team'
+} = Astro.props;
+
 const members = [
-  {
-    name: 'Albert Flores',
-    role: 'VP of Sales',
-    image: 'https://randomuser.me/api/portraits/men/32.jpg'
-  },
-  {
-    name: 'Theresa Webb',
-    role: 'Business Development Manager',
-    image: 'https://randomuser.me/api/portraits/women/44.jpg'
-  },
-  {
-    name: 'Savannah Nguyen',
-    role: 'Director of Product',
-    image: 'https://randomuser.me/api/portraits/women/68.jpg'
-  },
-  {
-    name: 'Daniel Murphy',
-    role: 'Business Analyst',
-    image: 'https://randomuser.me/api/portraits/men/85.jpg'
-  },
-  {
-    name: 'Darrell Steward',
-    role: 'Director of Sales',
-    image: 'https://randomuser.me/api/portraits/men/77.jpg'
-  }
+  { name: 'Albert Flores', role: 'VP of Sales', image: Kyle },
+  { name: 'Theresa Webb', role: 'Business Development Manager', image: Natan },
+  { name: 'Savannah Nguyen', role: 'Director of Product', image: Ryan },
+  { name: 'Daniel Murphy', role: 'Business Analyst', image: Tim },
+  { name: 'Darrell Steward', role: 'Director of Sales', image: Yelena },
 ];
 ---
 
-<section id="team" class="w-full px-16 py-24 grid grid-cols-4">
+<section id={sectionId} class="w-full px-4 md:px-16 py-16 md:py-24 grid grid-cols-1 md:grid-cols-4">
   <div class="col-span-2 flex flex-col justify-center">
-    <h2 class="text-4xl font-extrabold mb-4">Join Our Team</h2>
+    <h2 class="text-4xl font-extrabold mb-4">{title}</h2>
     <p class="text-gray-600 dark:text-gray-300 mb-6 font-medium">
-      Enim esse do dolore commodo ullamco adipisicing dolor aliqua magna sint occaecat. Veniam cillum sit nulla consectetur do ut. Eiusmod dolor enim dolor et labore. Commodo quis occaecat incididunt irure.
+      {subtitle}
     </p>
     <a href="#form-container" class="inline-flex text-cm-500 hover:underline font-semibold">
-      In sit adipisicing laborum est commodo. ↗
+      {ctaText}
     </a>
   </div>
 
@@ -45,7 +39,7 @@ const members = [
       id={`member-${i}`}
       class={`overflow-hidden aspect-square shadow-md transition-transform duration-300 ease-in-out hover:scale-105 ${i === 1 ? 'rounded-tr-2xl' : ''}`}
     >
-      <img
+      <Image
         src={member.image}
         alt={member.name}
         class="w-full h-full object-cover"
@@ -69,7 +63,7 @@ const members = [
       id={`member-${i + 2}`}
       class={`overflow-hidden aspect-square shadow-md transition-transform duration-300 ease-in-out hover:scale-105 ${i === 2 ? 'rounded-br-2xl' : ''}`}
     >
-      <img
+      <Image
         src={member.image}
         alt={member.name}
         class="w-full h-full object-cover"
