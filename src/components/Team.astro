@@ -1,74 +1,102 @@
 ---
-import { Image } from 'astro:assets';
+import { Image as ImageComponent } from 'astro:assets';
 
-import Kyle from '../assets/images/team/kyle.webp';
-import Natan from '../assets/images/team/natan.webp';
-import Ryan from '../assets/images/team/ryan.webp';
-import Tim from '../assets/images/team/tim.webp';
-import Yelena from '../assets/images/team/yelena.webp';
-
+// Props para título y contenido del bloque izquierdo
 const {
-  title = 'Join Our Team',
-  subtitle = 'Enim esse do dolore commodo ullamco adipisicing dolor aliqua magna sint occaecat...',
-  ctaText = 'In sit adipisicing laborum est commodo. ↗',
-  sectionId = 'team'
+  title = 'Meet the Team',
+  subtitle = 'At Vancouver Mind-Body Centre, you´re guided by a team of experienced coaches...',
+  ctaText = 'Learn more ↗',
+  sectionId = 'team',
+  teamIntroTitle = 'Qui dolor occaecat.',
+  teamIntroText = 'Esse irure reprehenderit dolor deserunt duis et proident irure commodo do.',
+  teamOutroCta = 'Edipisicing ad. ↗',
+  members = [
+    {
+      name: 'Kyle',
+      role: 'Canfitpro trainer, kickboxing instructor & 3rd-degree Shotokan black belt.',
+      description: 'Kyle helps you break through mental barriers and build functional strength that feels as good as it looks through strength work, martial drills, and mindset coaching.',
+      image: await import('../assets/images/team/kyle.webp'),
+    },
+    {
+      name: 'Natan Cheifetz',
+      role: 'RKC-Level II kettlebell coach & Aikido sensei trained by the IDF.',
+      description: '“When you train with me, you’re learning to move efficiently, rebuild your body, and regain confidence through proven strength & martial arts methods.”',
+      image: await import('../assets/images/team/natan.webp'),
+    },
+    {
+      name: 'Ryan',
+      role: 'Martial Arts Lead',
+      description: 'Black belt in multiple disciplines and team mentor.',
+      image: await import('../assets/images/team/ryan.webp'),
+    },
+    {
+      name: 'Tim',
+      role: 'Certified Integral Coach, Kettlebell & Tai Chi instructor.',
+      description: 'Tim brings a holistic style to kettlebells, combining strength, body awareness, and inner calm. His classes are a physical workout and a path to personal growth.',
+      image: await import('../assets/images/team/tim.webp'),
+    },
+    {
+      name: 'Yelena',
+      role: 'Kettlebell specialist & 3rd dan in Aikido + Iaido.',
+      description: 'Starting kettlebells here in 2011, Yelena knows what it’s like to grow, and now she helps others master form, scale their strength, and find joy in movement, even during pregnancy!',
+      image: await import('../assets/images/team/yelena.webp'),
+    },
+  ],
 } = Astro.props;
-
-const members = [
-  { name: 'Albert Flores', role: 'VP of Sales', image: Kyle },
-  { name: 'Theresa Webb', role: 'Business Development Manager', image: Natan },
-  { name: 'Savannah Nguyen', role: 'Director of Product', image: Ryan },
-  { name: 'Daniel Murphy', role: 'Business Analyst', image: Tim },
-  { name: 'Darrell Steward', role: 'Director of Sales', image: Yelena },
-];
 ---
 
-<section id={sectionId} class="w-full px-4 md:px-16 py-16 md:py-24 grid grid-cols-1 md:grid-cols-4">
-  <div class="col-span-2 flex flex-col justify-center">
-    <h2 class="text-4xl font-extrabold mb-4">{title}</h2>
-    <p class="text-gray-600 dark:text-gray-300 mb-6 font-medium">
-      {subtitle}
-    </p>
-    <a href="#form-container" class="inline-flex text-cm-500 hover:underline font-semibold">
-      {ctaText}
-    </a>
+<section id={sectionId} class="w-full px-4 md:px-16 py-16 md:py-24 grid grid-cols-1 md:grid-cols-4 gap-2">
+  <!-- Bloque de texto inicial -->
+  <div class="md:col-span-2 flex flex-col justify-center">
+    <h2 class="text-3xl sm:text-4xl font-extrabold mb-4">{title}</h2>
+    <p class="text-gray-600 dark:text-gray-300 mb-6 font-medium">{subtitle}</p>
+    <a href="#form-container" class="inline-flex text-gym-500 hover:underline font-semibold">{ctaText}</a>
   </div>
 
+  <!-- Primeras dos imágenes -->
   {members.slice(0, 2).map((member, i) => (
     <div
       id={`member-${i}`}
-      class={`overflow-hidden aspect-square shadow-md transition-transform duration-300 ease-in-out hover:scale-105 ${i === 1 ? 'rounded-tr-2xl' : ''}`}
+      class={`relative group overflow-hidden aspect-square shadow-md transition-transform duration-300 ease-in-out hover:scale-105 ${i === 1 ? 'md:rounded-tr-2xl' : ''}`}
     >
-      <Image
-        src={member.image}
+      <ImageComponent
+        src={member.image.default}
         alt={member.name}
         class="w-full h-full object-cover"
         loading="lazy"
       />
+      <div class="absolute inset-0 bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-4 text-center">
+        <h3 class="text-lg font-bold">{member.name}</h3>
+        <p class="text-sm italic">{member.role}</p>
+        <p class="text-sm mt-2">{member.description}</p>
+      </div>
     </div>
   ))}
 
-  <div class="col-span-1 flex flex-col justify-center">
-    <h2 class="text-3xl font-bold mb-4">Qui dolor occaecat.</h2>
-    <p class="text-gray-600 dark:text-gray-300 mb-6 font-medium">
-      Esse irure reprehenderit dolor deserunt duis et proident irure commodo do.
-    </p>
-    <a href="#form-container" class="inline-flex text-cm-500 hover:underline font-semibold">
-      Edipisicing ad. ↗
-    </a>
+  <!-- Segundo bloque de texto -->
+  <div class="md:col-span-1 flex flex-col justify-center">
+    <h3 class="text-2xl font-bold mb-4">{teamIntroTitle}</h3>
+    <p class="text-gray-600 dark:text-gray-300 mb-6 font-medium">{teamIntroText}</p>
+    <a href="#form-container" class="inline-flex text-gym-500 hover:underline font-semibold">{teamOutroCta}</a>
   </div>
 
+  <!-- Resto de las imágenes -->
   {members.slice(2).map((member, i) => (
     <div
       id={`member-${i + 2}`}
-      class={`overflow-hidden aspect-square shadow-md transition-transform duration-300 ease-in-out hover:scale-105 ${i === 2 ? 'rounded-br-2xl' : ''}`}
+      class={`relative group overflow-hidden aspect-square shadow-md transition-transform duration-300 ease-in-out hover:scale-105 ${i === 2 ? 'md:rounded-br-2xl' : ''}`}
     >
-      <Image
-        src={member.image}
+      <ImageComponent
+        src={member.image.default}
         alt={member.name}
         class="w-full h-full object-cover"
         loading="lazy"
       />
+      <div class="absolute inset-0 bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-4 text-center">
+        <h3 class="text-lg font-bold">{member.name}</h3>
+        <p class="text-sm italic">{member.role}</p>
+        <p class="text-sm mt-2">{member.description}</p>
+      </div>
     </div>
   ))}
 </section>

@@ -1,4 +1,28 @@
-<div id="freetrial_a0fa9a84-9224-46d1-ac3b-b48afe77281f"></div><script type="text/javascript">(function(win, doc, zenJSHost, src, module, partitionApiKey, widgetInstanceId) {
+---
+const {
+  title = "Schedule Your Free Trial",
+  subtitle = "Spots are limited and filling quickly.",
+  widgetId = 'freetrial_a0fa9a84-9224-46d1-ac3b-b48afe77281f'
+} = Astro.props;
+---
+
+<section id="form-container" class="bg-white dark:bg-dark w-full py-12 px-4 sm:px-6 lg:px-8 text-gray-900 dark:text-white">
+  <div class="max-w-4xl mx-auto text-center mb-10">
+    <h2 class="text-3xl sm:text-4xl font-bold">{title}</h2>
+    <p class="text-lg text-gray-600 dark:text-gray-300 mt-2">{subtitle}</p>
+  </div>
+
+  <div class="max-w-2xl mx-auto bg-gray-100 dark:bg-gray-900 rounded-xl shadow-xl p-6 sm:p-10 border border-gray-200 dark:border-gray-800 transition">
+    <div id={widgetId}>
+
+    </div>
+  </div>
+</section>
+
+<div id="freetrial_a0fa9a84-9224-46d1-ac3b-b48afe77281f"></div>
+<script type="text/javascript">
+
+(function(win, doc, zenJSHost, src, module, partitionApiKey, widgetInstanceId) {
 win.zenplanner = win.zenplanner || {};
 win.zenplanner.directLoadArgs = win.zenplanner.directLoadArgs || [];
 var tryCount = 0,

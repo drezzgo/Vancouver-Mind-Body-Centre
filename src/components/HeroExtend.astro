@@ -1,17 +1,17 @@
 ---
 import { Image } from 'astro:assets';
 import HeroImage from '../assets/hero.webp';
-const hero = {
-  headline: "Non nisi commodo nisi ex cillum id",
-  description: "Non adipisicing ea est irure nulla ipsum qui sit reprehenderit aliquip anim consectetur. Dolor excepteur excepteur enim amet.",
-  cta: {
+const {
+  headline = "Non nisi commodo nisi ex cillum id",
+  description = "Non adipisicing ea est irure nulla ipsum qui sit reprehenderit aliquip anim consectetur. Dolor excepteur excepteur enim amet.",
+  cta = {
     label: "Agendar clase gratuita",
     href: "#form-container"
   },
-  image: {
+  image = {
     alt: "Eiusmod officia quis occaecat officia mollit mollit officia sint."
   }
-};
+}= Astro.props;;
 ---
 
 <section class="w-full px-16 py-20 bg-white dark:bg-dark">
@@ -19,14 +19,14 @@ const hero = {
     <!-- Texto -->
     <div class="max-w-xl space-y-6">
       <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
-        {hero.headline}
+        {headline}
       </h2>
-      <p class="text-lg text-gray-600 dark:text-gray-300">{hero.description}</p>
+      <p class="text-lg text-gray-600 dark:text-gray-300">{description}</p>
       <a
-        href={hero.cta.href}
+        href={cta.href}
         class="inline-block bg-cm-500 hover:bg-cm-600 text-white text-sm font-semibold py-3  rounded-md transition"
       >
-        {hero.cta.label}
+        {cta.label}
       </a>
     </div>
 
@@ -34,7 +34,7 @@ const hero = {
     <div class="max-w-3/5">
       <Image
       src={HeroImage}
-      alt={hero.image.alt} class="rounded-xl shadow-lg " loading="lazy" />
+      alt={image.alt} class="rounded-xl shadow-lg " loading="lazy" />
     </div>
   </div>
 </section>
