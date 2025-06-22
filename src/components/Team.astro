@@ -4,8 +4,8 @@ import { Image as ImageComponent } from 'astro:assets';
 // Props para título y contenido del bloque izquierdo
 const {
   title = 'Meet the Team',
-  subtitle = 'At Vancouver Mind-Body Centre, you´re guided by a team of experienced coaches...',
-  ctaText = 'Learn more ↗',
+  subtitle = 'At Vancouver Mind-Body Centre, you´re guided by a team of experienced coaches with deep backgrounds in martial arts, fitness, and mobility training. Each coach brings their own expertise and a shared commitment to helping you move better and feel stronger.',
+  ctaText = 'Learn more →',
   sectionId = 'team',
   teamIntroTitle = 'Programs for Every Goal',
   teamIntroText = 'Our programs are designed for all levels.',
@@ -45,58 +45,69 @@ const {
 } = Astro.props;
 ---
 
-<section id={sectionId} class="w-full px-4 md:px-16 py-16 md:py-24 grid grid-cols-1 md:grid-cols-4 gap-2">
-  <!-- Bloque de texto inicial -->
-  <div class="md:col-span-2 flex flex-col justify-center">
-    <h2 class="text-3xl sm:text-4xl font-extrabold mb-4">{title}</h2>
-    <p class="text-gray-600 dark:text-gray-300 mb-6 font-medium">{subtitle}</p>
-    <a href="https://vancouvermindbody.com/instructors/" target="_blank" class="inline-flex text-gym-500 hover:underline font-semibold">{ctaText}</a>
-  </div>
+<section id={sectionId} class="w-full bg-white dark:bg-dark py-16 px-4 md:px-16">
+  <div class="max-w-7xl mx-auto space-y-12">
 
-  <!-- Primeras dos imágenes -->
-  {members.slice(0, 2).map((member, i) => (
-    <div
-      id={`member-${i}`}
-      class={`relative group overflow-hidden aspect-square shadow-md transition-transform duration-300 ease-in-out hover:scale-105 ${i === 1 ? 'md:rounded-tr-2xl' : ''}`}
-    >
-      <ImageComponent
-        src={member.image.default}
-        alt={member.name}
-        class="w-full h-full object-cover"
-        loading="lazy"
-      />
-      <div class="absolute inset-0 bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-4 text-center">
-        <h3 class="text-lg font-bold">{member.name}</h3>
-        <p class="text-sm italic">{member.role}</p>
-        <p class="text-sm mt-2">{member.description}</p>
+    <!-- Primera fila responsive -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <!-- Bloque texto ocupa dos columnas en sm+ -->
+      <div class="col-span-1 sm:col-span-2 md:col-span-2 flex flex-col justify-center">
+        <h2 class="text-4xl font-extrabold mb-4 text-gray-900 dark:text-white">{title}</h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">{subtitle}</p>
+        <a
+          href="https://vancouvermindbody.com/instructors/"
+          target="_blank"
+          rel="noopener"
+          class="text-gym-500 hover:underline font-semibold"
+        >
+          {ctaText}
+        </a>
       </div>
+
+      <!-- Primeros dos miembros -->
+      {members.slice(0, 2).map((member) => (
+        <div class="relative group aspect-square overflow-hidden rounded-xl shadow-lg transform transition hover:scale-105">
+          <ImageComponent
+            src={member.image.default}
+            alt={member.name}
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+            <h3 class="text-lg font-bold">{member.name}</h3>
+            <p class="text-sm italic mt-1">{member.role}</p>
+            <p class="text-sm mt-2">{member.description}</p>
+          </div>
+        </div>
+      ))}
     </div>
-  ))}
 
-  <!-- Segundo bloque de texto -->
-  <div class="md:col-span-1 flex flex-col justify-center">
-    <h3 class="text-2xl font-bold mb-4">{teamIntroTitle}</h3>
-    <p class="text-gray-600 dark:text-gray-300 mb-6 font-medium">{teamIntroText}</p>
-    <a href="https://vancouvermindbody.com/programs/" target="_blank" class="inline-flex text-gym-500 hover:underline font-semibold">{teamOutroCta}</a>
-  </div>
-
-  <!-- Resto de las imágenes -->
-  {members.slice(2).map((member, i) => (
-    <div
-      id={`member-${i + 2}`}
-      class={`relative group overflow-hidden aspect-square shadow-md transition-transform duration-300 ease-in-out hover:scale-105 ${i === 2 ? 'md:rounded-br-2xl' : ''}`}
-    >
-      <ImageComponent
-        src={member.image.default}
-        alt={member.name}
-        class="w-full h-full object-cover"
-        loading="lazy"
-      />
-      <div class="absolute inset-0 bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-4 text-center">
-        <h3 class="text-lg font-bold">{member.name}</h3>
-        <p class="text-sm italic">{member.role}</p>
-        <p class="text-sm mt-2">{member.description}</p>
+    <!-- Segunda fila responsive -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <!-- Bloque intermedio texto ocupa primera columna en md -->
+      <div class="col-span-1 flex flex-col justify-center text-center sm:text-left">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{teamIntroTitle}</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">{teamIntroText}</p>
+        <a href="#" class="text-gym-500 hover:underline font-semibold">{teamOutroCta}</a>
       </div>
+
+      <!-- Resto de los miembros -->
+      {members.slice(2).map((member) => (
+        <div class="relative group aspect-square overflow-hidden rounded-xl shadow-lg transform transition hover:scale-105">
+          <ImageComponent
+            src={member.image.default}
+            alt={member.name}
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+            <h3 class="text-lg font-bold">{member.name}</h3>
+            <p class="text-sm italic mt-1">{member.role}</p>
+            <p class="text-sm mt-2">{member.description}</p>
+          </div>
+        </div>
+      ))}
     </div>
-  ))}
+
+  </div>
 </section>
