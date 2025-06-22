@@ -7,39 +7,62 @@ const {
 } = Astro.props;
 ---
 
-<section id={sectionId} class="w-full px-4 sm:px-10 md:px-16 py-20 flex flex-col gap-10">
-  <div class="w-full md:w-1/2">
-    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight [&>br]:hidden sm:[&>br]:block" set:html={title} />
-    <p class="text-lg sm:text-xl md:text-2xl mt-4 font-semibold text-gray-800 dark:text-gray-200">{subtitle}</p>
+<section
+  id={sectionId}
+  class="relative w-full px-4 sm:px-10 md:px-16 py-20 flex flex-col gap-10 overflow-hidden"
+>
+  <!-- Video de fondo -->
+  <video
+    autoplay muted loop playsinline
+    class="absolute inset-0 w-full h-full object-cover"
+  >
+    <source
+      src="https://pub-e99d4e6e55b14d18816edeb39b164ac6.r2.dev/hero-background-vancouvermindbody.mp4"
+      type="video/mp4"
+    />
+  </video>
+
+  <!-- Overlay oscuro -->
+  <div class="absolute inset-0 bg-black/40 dark:bg-black/60 z-10" />
+
+  <!-- Contenido sobre video+overlay -->
+  <div class="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10 text-white">
+    <div class="w-full md:w-1/2">
+      <h1
+        class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight [&>br]:hidden sm:[&>br]:block"
+        set:html={title}
+      />
+      <p class="text-lg sm:text-xl md:text-2xl mt-4 font-semibold">
+        {subtitle}
+      </p>
+    </div>
+
+    <div class="w-full flex justify-center md:justify-end">
+      <p class="w-full sm:w-2/3 md:w-1/2 lg:w-1/3 text-justify indent-6 font-semibold">
+        {description}
+      </p>
+    </div>
+
+    <div class="mt-12 flex justify-center">
+      <svg
+        id="scroll-arrow"
+        xmlns="http://www.w3.org/2000/svg"
+        width="36" height="36" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" stroke-width="2"
+        class="animate-pulse"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M4 11l8 3l8 -3" />
+      </svg>
+    </div>
   </div>
 
-  <div class="w-full flex justify-center md:justify-end">
-    <p class="w-full sm:w-2/3 md:w-1/2 lg:w-1/3 text-justify indent-6 font-semibold text-gray-700 dark:text-gray-300">
-      {description}
-    </p>
-  </div>
-
-  <div class="mt-12 flex justify-center">
-    <svg
-      id="scroll-arrow"
-      xmlns="http://www.w3.org/2000/svg"
-      width="36"
-      height="36"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="animate-pulse text-gray-600 dark:text-gray-300"
-    >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M4 11l8 3l8 -3" />
-    </svg>
-  </div>
+  <!-- Degradado inferior -->
+  <div
+    class="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[var(--bg)] z-20"
+  />
 </section>
 
-<!-- GSAP Script (solo en cliente) -->
 <script>
   import gsap from 'gsap';
 
