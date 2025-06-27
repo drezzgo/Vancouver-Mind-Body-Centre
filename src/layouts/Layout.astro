@@ -12,7 +12,7 @@ import Header from '@/components/Header.astro';
 	
     
     <!-- Title y Description -->
-    <title>Vancouver MindBody | Personal Training & Martial Arts Studio</title>
+    <title>Vancouver Mind-Body | Personal Training & Martial Arts Studio</title>
     <meta name="description" content="Join Vancouver MindBody Centre on Main Street for expert coaching in strength, mobility and martial arts. Book your free trial today." />
 
     <!-- Keywords -->
@@ -48,11 +48,37 @@ import Header from '@/components/Header.astro';
 
     <!-- Generator y Language -->
     <meta name="generator" content={Astro.generator} />
+    <script>
+        (function (
+            w: Window & typeof globalThis,
+            d: Document,
+            s: string,
+            l: string,
+            i: string
+        ) {
+            (w as any)[l] = (w as any)[l] || [];
+            ((w as any)[l] as any[]).push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            const f = d.getElementsByTagName(s)[0] as HTMLElement | null;
+            const j = d.createElement(s) as HTMLScriptElement;
+            const dl = l !== 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            if (f && f.parentNode) {
+                f.parentNode.insertBefore(j, f);
+            }
+        })(window, document, 'script', 'dataLayer', 'GTM-WKGCKCQ6');
+    </script>
 
     <ClientRouter />
   </head>
 
   <body class="antialiased bg-white text-gray-900 dark:bg-dark dark:text-white">
+    <noscript>
+      <iframe 
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WKGCKCQ6"
+        height="0" width="0" style="display:none;visibility:hidden">
+      </iframe>
+    </noscript>
     <header>
       <Header 
         navLinks={[
@@ -69,5 +95,8 @@ import Header from '@/components/Header.astro';
 
     <!-- Optionally: include footer here -->
     <!-- <footer>...</footer> -->
+  <script>
+  
+  </script>
   </body>
 </html>
