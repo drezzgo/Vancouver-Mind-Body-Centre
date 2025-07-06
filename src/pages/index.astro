@@ -1,27 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
-import HeroExtend from "@/components/HeroExtend.astro";
-import WhyUs from "../components/WhyUs.astro";
-import Steps from "../components/Steps.astro";
-import Team from "../components/Team.astro";
-import Forms from "@/components/Forms.astro";
-import Test from "@/components/Test.astro";
-import Footer from "@/components/Footer.astro";
+import Testimonial from "@/components/Testimonial.astro";
+import Team from "@/components/Team.astro";
 ---
 
 <Layout>
   <Hero 
     description="Get professional coaching that adapts to your body and your goals. Be stronger, move better, and join a community of continuous growth."
   />
-  <HeroExtend 
-    headline="About Us"
-    description="Vancouver Mind‑Body Centre is a locally rooted studio on Main Street offering strength training, martial arts, and mobility-focused programs for adults of all levels. With expert instructors and small class sizes, we prioritize personal attention and thoughtful coaching in every session. Whether you're working through an injury, looking to regain energy, or trying something new, you'll find a clean, calm space built to help you move better, feel stronger, and stay consistent."
-  />
-  <WhyUs />
-  <Steps />
-  <Team />
-  <Forms />
-  <Test/>
-  <Footer/>
+  <Testimonial/>
+  <Team/>
 </Layout>

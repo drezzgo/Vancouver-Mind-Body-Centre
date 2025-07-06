@@ -1,7 +1,10 @@
 ---
+import Forms from './Forms.astro';
+
 export interface Props {
   title?: string;
   subtitle?: string;
+  address?: string;
   description?: string;
   sectionId?: string;
 }
@@ -9,6 +12,7 @@ export interface Props {
 const {
   title = 'Book Your Free Strength & Movement Class Today',
   subtitle = 'Group Fitness | Personal Training | Martial Arts',
+  address = '6682 Main SF',
   description = 'Quis id ex adipisicing tempor id aliqua sit eu voluptate irure...',
   sectionId = 'Hero'
 } = Astro.props;
@@ -16,7 +20,7 @@ const {
 
 <section
   id={sectionId}
-  class="relative w-full px-4 sm:px-10 md:px-16 py-20 flex flex-col gap-10 overflow-hidden"
+  class="relative w-full px-4 lg:px-10 md:px-16 pt-20 flex flex-col gap-10 overflow-hidden"
 >
   <!-- Video de fondo -->
   <video
@@ -33,26 +37,24 @@ const {
   <div class="absolute inset-0 bg-black/40 dark:bg-black/80 z-10" />
 
   <!-- Contenido sobre video+overlay -->
-  <div class="relative z-20 w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10 text-white">
-    <div class="w-full md:w-1/2">
-      <h1
-        class="uppercase text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight [&>br]:hidden sm:[&>br]:block"
-        set:html={title}
-      />
-      <p class="text-lg sm:text-xl md:text-2xl mt-4 font-semibold">
-        {subtitle}
-      </p>
-      <a href="https://www.google.com/maps/place/Vancouver+Mind-Body+Centre+(VMBC)/@49.2239899,-123.1038841,17z/data=!3m2!4b1!5s0x5486746a3f6c0445:0x157bebac1ffb7e3e!4m6!3m5!1s0x548673f8ac09a673:0x1f5bb2f281e4e969!8m2!3d49.2239899!4d-123.1013092!16s%2Fg%2F1tglyp5l?entry=ttu&g_ep=EgoyMDI1MDYyMy4yIKXMDSoASAFQAw%3D%3D" class="text-sm" target="_blank">6682 Main St</a>
+  <div class="relative z-20 w-full max-w-8xl mx-auto px-4 lg:px-6 lg:px-8 flex flex-col gap-10 text-white">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+      <div class="space-y-2 " >
+        <h1 class="uppercase text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold">{title}</h1>
+        <p class="text-lg sm:text-xl md:text-2xl font-semibold">{subtitle}</p>
+        <a href="https://www.google.com/maps/place/Vancouver+Mind-Body+Centre+(VMBC)/@49.2239899,-123.1038841,17z/data=!3m2!4b1!5s0x5486746a3f6c0445:0x157bebac1ffb7e3e!4m6!3m5!1s0x548673f8ac09a673:0x1f5bb2f281e4e969!8m2!3d49.2239899!4d-123.1013092!16s%2Fg%2F1tglyp5l?entry=ttu&g_ep=EgoyMDI1MDYyMy4yIKXMDSoASAFQAw%3D%3D" class="text-sm sm:text-base md:text-lg lg:text-xl">
+          {address}
+        </a>
+        <p class="hidden lg:block">{description}</p>
+      </div>
+      <div class="lg:flex lg:justify-center">
+        <Forms/>
+      </div>
+      <p class="row-span-2 lg:hidden text-justify indent-6 font-semibold">{description}</p>
     </div>
-
-    <div class="flex flex-col gap-y-8 lg:flex-row sm:justify-between sm:items-center w-full">
-      <a class="capitalize px-4 py-2 bg-gym-500 flex items-center justify-center rounded-full text-4xl font-black text-center" href="#form-container">book your free class</a>
-      <p class="sm:w-2/3 md:w-1/2 lg:w-1/3 text-justify indent-6 font-semibold">
-      {description}
-      </p>
-    </div>
-
-    <div class="mt-12 flex justify-center">
+    
+    <div class="flex justify-center pb-5">
       <svg
         id="scroll-arrow"
         xmlns="http://www.w3.org/2000/svg"
@@ -65,6 +67,8 @@ const {
       </svg>
     </div>
   </div>
+
+
 
   <!-- Degradado inferior -->
   <div
