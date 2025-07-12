@@ -5,19 +5,72 @@ const {
   widgetId = 'freetrial_a0fa9a84-9224-46d1-ac3b-b48afe77281f'
 } = Astro.props;
 ---
-<style>
-#form-container iframe {
-  width: 100% !important;
-  max-width: 100% !important;
-  min-height: 100% !important;
-}
-</style>
-<div id="form-container" class="w-full px-4 lg:px-8 text-gray-900 dark:text-white">
-  <div class="w-full mx-auto bg-gray-100/30 dark:bg-gym-500/60 rounded-xl shadow-xl p-4 sm:p-10">
-    <div class="w-full h-full" id={widgetId}>
+<section id="form-section" class="bg-white py-12">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <!-- Título principal -->
+    <h2 class="uppercase text-old-brick-900 font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-2">
+      {title}
+    </h2>
+    <!-- Subtítulo -->
+    <p class="text-stone-800 text-lg sm:text-xl mb-6">
+      {subtitle}
+    </p>
+
+    <!-- Contenedor del widget de formulario -->
+    <div class="mx-auto max-w-3xl rounded-2xl shadow-xl overflow-hidden">
+      <div id={widgetId} class="w-full"></div>
     </div>
   </div>
-</div>
+
+  <!-- Script de carga del widget, solo en cliente -->
+  <script type="module">
+    (function(win, doc, zenJSHost, src, module, partitionApiKey, widgetInstanceId) {
+      win.zenplanner = win.zenplanner || {};
+      win.zenplanner.directLoadArgs = win.zenplanner.directLoadArgs || [];
+      let tryCount = 0, intervalId = null;
+      function afterLoad() {
+        const loader = win.zenplanner.directLoader;
+        if (loader) {
+          clearInterval(intervalId);
+          win.zenplanner.directLoadArgs
+            .filter(a => a.widgetInstanceId === widgetInstanceId)
+            .forEach(() => loader.loadWidget(zenJSHost, module, partitionApiKey, widgetInstanceId));
+        } else if (tryCount++ > 200) {
+          console.error('Zen Planner widget failed to load:', module);
+          clearInterval(intervalId);
+        }
+      }
+      if (!win.zenplanner.directLoader) {
+        win.zenplanner.directLoadArgs.push({ module, partitionApiKey, widgetInstanceId });
+        const s = doc.createElement('script');
+        s.async = true;
+        s.src = `${zenJSHost}/${src}`;
+        doc.head.appendChild(s);
+        intervalId = setInterval(afterLoad, 50);
+      } else {
+        win.zenplanner.directLoader.loadWidget(zenJSHost, module, partitionApiKey, widgetInstanceId);
+      }
+    })(
+      window,
+      document,
+      'https://studio.zenplanner.com',
+      'zenplanner/studio/target/zp-widget-direct.js',
+      'freetrial',
+      '5dcb14da-2715-4c22-8f14-6648fc784219',
+      widgetId
+    );
+  </script>
+
+  <!-- Estilos específicos para el iframe -->
+  <style>
+    #form-section iframe {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-height: 800px !important;
+      border: none;
+    }
+  </style>
+</section>
 
 <div id="freetrial_a0fa9a84-9224-46d1-ac3b-b48afe77281f"></div>
 <script type="text/javascript">

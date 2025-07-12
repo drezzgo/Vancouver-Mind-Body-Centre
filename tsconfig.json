@@ -1,7 +1,14 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"],
+  "exclude": [
+    "dist",
+    "src/components/HeroExtend.astro",
+    "src/components/Steps.astro",
+    "src/components/Test.astro",
+    "src/components/Testimonial.astro",
+    "src/components/Warning.astro"
+  ],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

@@ -1,14 +1,67 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
-import Testimonial from "@/components/Testimonial.astro";
+import Forms from "../components/Forms.astro";
+import NewTestimonial from "@/components/NewTestimonial.astro";
 import Team from "@/components/Team.astro";
+import Marquee from "@/components/Marquee.astro";
+
+// Import images using import.meta.glob for Astro compatibility
+const images = import.meta.glob('../assets/images/team/*.webp', { eager: true, import: 'default' });
+
+// Prepare the array of team members
+const teamMembers = [
+  {
+    name: 'Kyle',
+    role: 'Canfitpro trainer, kickboxing instructor & 3rd-degree Shotokan black belt',
+    description: 'Kyle helps you break through mental barriers and build functional strength that feels as good as it looks through strength work, martial drills, and mindset coaching.',
+    image: images['../assets/images/team/kyle.webp'],
+  },
+  {
+    name: 'Natan Cheifetz',
+    role: 'RKC-Level II kettlebell coach & Aikido sensei trained by the IDF',
+    description: '“When you train with me, you’re learning to move efficiently, rebuild your body, and regain confidence through proven strength & martial arts methods.”',
+    image: images['../assets/images/team/natan.webp'],
+  },
+  {
+    name: 'Ryan',
+    role: 'Martial Arts Lead',
+    description: 'Black belt in multiple disciplines and team mentor.',
+    image: images['../assets/images/team/ryan.webp'],
+  },
+  {
+    name: 'Tim',
+    role: 'Certified Integral Coach, Kettlebell & Tai Chi instructor',
+    description: 'Tim brings a holistic style to kettlebells, combining strength, body awareness, and inner calm.',
+    image: images['../assets/images/team/tim.webp'],
+  },
+  {
+    name: 'Yelena',
+    role: 'Kettlebell specialist & 3rd dan in Aikido + Iaido',
+    description: 'Yelena helps others master form, scale their strength, and find joy in movement, even during pregnancy!',
+    image: images['../assets/images/team/yelena.webp'],
+  },
+];
 ---
 
 <Layout>
   <Hero 
     description="Get professional coaching that adapts to your body and your goals. Be stronger, move better, and join a community of continuous growth."
   />
-  <Testimonial/>
-  <Team/>
+  <Forms/>
+  <Marquee
+    items={['TEAM TRAINING','★','LIFE CHANGING','★','MEMBERSHIP','★','TEAM TRAINING','★','LIFE CHANGING','★','MEMBERSHIP','★']}
+    speed={20}
+/>
+  <NewTestimonial/>
+  <Team
+    title="Meet Our Expert Coaches"
+    subtitle="At Vancouver Mind-Body Centre, you’re guided by a team of experienced coaches with deep backgrounds in martial arts, fitness, and mobility."
+    ctaText="Learn more about our instructors →"
+    teamIntroTitle="Programs for Every Goal"
+    teamIntroText="Whether you’re just starting out or looking to level up, we have the perfect program for you."
+    teamOutroCta="Explore all programs ↗"
+    sectionId="team"
+    members={teamMembers}
+  />
 </Layout>
