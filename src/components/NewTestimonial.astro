@@ -1,0 +1,93 @@
+---
+import TestimonialCard from './TestimonialCard.astro';
+export interface Props {
+    sentence?: string;
+    title?: string;
+}
+
+const {
+    sentence = 'Feel the love',
+    title = 'What our members say about us'
+} = Astro.props;
+
+const testimonials = [
+    {
+        stars: 5,
+        text: 'Great place to take classes and develop a healthy body and mind. Classes are flexible and the teachers really care about the people who attend them. They are incredibly dedicated, supportive and flexible. There is a great sense of community and support at the Mind-Body Centre that doesn’t compare to other places.',
+        name: 'Jolene Hornal'
+    },
+    {
+        stars: 5,
+        text: 'The karate training at Vancouver Mind-Body is fantastic. My 12-year-old son has been training with Sensei Kyle for 6 years. Kyle’s approach is patient, inclusive and focused on teaching lessons that extend beyond the dojo, while being really fun and engaging. The small group sizes are also a bonus.',
+        name: 'Joleen T'
+    },
+    {
+        stars: 4,
+        text: 'I’ve been to several of Kyle’s classes so far, and every time is a blast. I’ve trained several martial arts in the past, and I really enjoy the approach here, keeping traditional values, techniques and style, but still being open to new interpretations and methods. I really like that what is taught is also tested through sparring, both striking and grappling.',
+        name: 'Dominique Arsenault'
+    },
+    {
+        stars: 5,
+        text: 'My friends and I tried the kettlebell class for the first time. The instructors were fantastic; super friendly and patient with all of us. The class was challenging but a lot of fun! I would definitely come back for other classes in the future!',
+        name: 'Aska'
+    },
+    {
+        stars: 5,
+        text: 'All of the staff are kind and motivating. The HIIT and fitness kickboxing classes are fun, easy to fit in and I’m getting fantastic results. It’s great for people of all levels. As someone new to gym culture I’ve found this one to be very welcoming and I look forward to going.',
+        name: 'Amanda Wood'},
+    {
+        stars: 5,
+        text: 'Unlike any other fitness centre I’ve joined, I’ve actually loved this one! The HIIT, kettlebells, and kickboxing classes are challenging, but accessible. The instructors take tremendous care to help train and engage newcomers (safety first), but push participants as strength grows. I’ve noticed a real difference in my overall strength. Can’t recommend enough.',
+        name: 'Katrina Carroll-Foster'
+    },
+    {
+        stars: 5,
+        text: 'Natan is an incredible instructor with a wealth of knowledge. His classes are always varied, fun and challenging, with a strong focus on form and functionality. I started kettlebells with him 2 years back (with no prior strength training experience) and am so much stronger in my body. I never miss my weekly class—even though I moved across town and have to drive 30 minutes to get there.',
+        name: 'Muneera Wallace'
+    },
+    {
+        stars: 5,
+        text: 'I started kettlebell, fitness kickboxing, and core classes here a few months ago and I feel so much stronger. There’s a great sense of community here and the gym welcomes people of all ages and abilities and backgrounds. They have martial arts classes as well and I plan to start my kids there when they are old enough.',
+        name: 'Vanessa Han'
+    },
+    {
+        stars: 5,
+        text: 'Wonderful place with a strong sense of community. Well-trained and knowledgeable staff. My son loves his aikido class he takes there. And I take a fitness class at the same time he’s learning aikido — how perfect is that? I can’t recommend this place enough.',
+        name: 'Jacqui Thomas'
+    },
+    {
+        stars: 5,
+        text: 'Great local gym and dojo for kids and adults. The instructors are very knowledgeable and inspiring. I’ve never enjoyed group gym “classes” and have always preferred to just work out on my own but their classes are almost addictive, very fun and extremely challenging.',
+        name: 'kona2chris'
+    },
+    {
+        stars: 5,
+        text: 'A real community, this place has been my best discovery in my new neighbourhood. The instructors are experienced and skilled, and I have been able to fine-tune my technique in things like kettlebell swings, Turkish Get-Up and ab exercises.',
+        name: 'Sarah Jacobs'
+    }
+];
+---
+
+<section id="testimonials" aria-labelledby="testimonials-title" class="py-12 text-old-brick-900">
+  <!-- Encabezado -->
+  <div class="max-w-3xl mx-auto px-4 text-center mb-16 space-y-2">
+    <p class="text-sm font-medium uppercase text-cm-500">{sentence}</p>
+    <h2 id="testimonials-title" class="uppercase text-4xl sm:text-5xl font-extrabold">
+      {title}
+    </h2>
+  </div>
+
+  <!-- Carrusel con scroll-snap -->
+  <div class="relative">
+    <div
+      class="flex snap-x snap-mandatory overflow-x-auto space-x-6 px-4 sm:px-6 lg:px-8"
+      role="list"
+    >
+      {testimonials.map((t, i) => (
+        <div class="snap-start flex-shrink-0 w-[280px] md:w-72 lg:w-80" role="listitem">
+          <TestimonialCard name={t.name} stars={t.stars} text={t.text} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

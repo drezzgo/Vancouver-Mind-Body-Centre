@@ -1,113 +1,91 @@
 ---
 import { Image as ImageComponent } from 'astro:assets';
 
-// Props para título y contenido del bloque izquierdo
+// Props para la sección de equipo
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  ctaText?: string;
+  teamIntroTitle?: string;
+  teamIntroText?: string;
+  teamOutroCta?: string;
+  members?: {
+    name: string;
+    role: string;
+    description?: string;
+    image: any; // Should be an imported image object
+  }[];
+  sectionId?: string;
+}
+
 const {
   title = 'Meet the Team',
-  subtitle = 'At Vancouver Mind-Body Centre, you´re guided by a team of experienced coaches with deep backgrounds in martial arts, fitness, and mobility training. Each coach brings their own expertise and a shared commitment to helping you move better and feel stronger.',
+  subtitle = 'At Vancouver Mind-Body Centre, you’re guided by a team of experienced coaches with deep backgrounds in martial arts, fitness, and mobility training.',
   ctaText = 'Learn more →',
-  sectionId = 'team',
   teamIntroTitle = 'Programs for Every Goal',
   teamIntroText = 'Our programs are designed for all levels.',
   teamOutroCta = 'Explore programs ↗',
-  members = [
-    {
-      name: 'Kyle',
-      role: 'Canfitpro trainer, kickboxing instructor & 3rd-degree Shotokan black belt.',
-      description: 'Kyle helps you break through mental barriers and build functional strength that feels as good as it looks through strength work, martial drills, and mindset coaching.',
-      image: await import('../assets/images/team/kyle.webp'),
-    },
-    {
-      name: 'Natan Cheifetz',
-      role: 'RKC-Level II kettlebell coach & Aikido sensei trained by the IDF.',
-      description: '“When you train with me, you’re learning to move efficiently, rebuild your body, and regain confidence through proven strength & martial arts methods.”',
-      image: await import('../assets/images/team/natan.webp'),
-    },
-    {
-      name: 'Ryan',
-      role: 'Martial Arts Lead',
-      description: 'Black belt in multiple disciplines and team mentor.',
-      image: await import('../assets/images/team/ryan.webp'),
-    },
-    {
-      name: 'Tim',
-      role: 'Certified Integral Coach, Kettlebell & Tai Chi instructor.',
-      description: 'Tim brings a holistic style to kettlebells, combining strength, body awareness, and inner calm. His classes are a physical workout and a path to personal growth.',
-      image: await import('../assets/images/team/tim.webp'),
-    },
-    {
-      name: 'Yelena',
-      role: 'Kettlebell specialist & 3rd dan in Aikido + Iaido.',
-      description: 'Starting kettlebells here in 2011, Yelena knows what it’s like to grow, and now she helps others master form, scale their strength, and find joy in movement, even during pregnancy!',
-      image: await import('../assets/images/team/yelena.webp'),
-    },
-  ],
+  sectionId = 'team',
+  members = []
 } = Astro.props;
 ---
 
-<section id={sectionId} class="w-full bg-white dark:bg-dark py-16 px-4 md:px-16">
+<section
+  id={sectionId}
+  class="bg-white py-12 px-4 md:px-8 lg:px-16"
+  aria-labelledby="team-title"
+>
   <div class="max-w-7xl mx-auto space-y-12">
 
-    <!-- Primera fila responsive -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-      <!-- Bloque texto ocupa dos columnas en sm+ -->
-      <div class="col-span-1 sm:col-span-2 md:col-span-2 flex flex-col justify-center">
-        <h2 class="text-4xl font-extrabold mb-4 text-gray-900 dark:text-white">{title}</h2>
-        <p class="text-gray-600 dark:text-gray-300 mb-4">{subtitle}</p>
-        <a
-          href="https://vancouvermindbody.com/instructors/"
-          target="_blank"
-          rel="noopener"
-          class="text-gym-500 hover:underline font-semibold"
+    <!-- Encabezado de la sección -->
+    <header class="text-center">
+      <h2 id="team-title" class="uppercase text-old-brick-900 font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight">
+        {title}
+      </h2>
+      <p class="mt-4 dark:text-slate-800 max-w-2xl mx-auto">
+        {subtitle}
+      </p>
+      <a
+        href="https://vancouvermindbody.com/instructors/"
+        class="mt-6 inline-block text-old-brick-900 font-semibold text-lg hover:text-old-brick-700 transition-colors"
+      >
+        {ctaText}
+      </a>
+    </header>
+
+    <!-- Grid de miembros + bloque intro -->
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] justify-center gap-8">
+
+      <!-- Tarjetas de miembro -->
+      {members.map((member, i) => (
+        <article
+          class="group relative overflow-hidden rounded-2xl shadow-md bg-old-brick-900 transform transition hover:scale-105"
         >
-          {ctaText}
-        </a>
-      </div>
-
-      <!-- Primeros dos miembros -->
-      {members.slice(0, 2).map((member) => (
-        <div class="relative group aspect-square overflow-hidden rounded-xl shadow-lg transform transition hover:scale-105">
           <ImageComponent
-            src={member.image.default}
+            src={member.image}
             alt={member.name}
-            class="w-full h-full object-cover"
+            class="w-full h-64 object-cover"
             loading="lazy"
+            width={member.image.width}
+            height={member.image.height}
           />
-          <div class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
-            <h3 class="text-lg font-bold">{member.name}</h3>
-            <p class="text-sm italic mt-1">{member.role}</p>
-            <p class="text-sm mt-2">{member.description}</p>
+          <div class="p-6">
+            <h4
+              class="text-white font-semibold text-xl mb-1"
+            >
+              {member.name}
+            </h4>
+            <p class="bg-white rounded-sm p-2 text-old-brick-900 text-sm font-semibold italic mb-3">
+              {member.role}
+            </p>
+            {member.description && (
+              <p class="prose text-white text-sm">
+                {member.description}
+              </p>
+            )}
           </div>
-        </div>
+        </article>
       ))}
     </div>
-
-    <!-- Segunda fila responsive -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-      <!-- Bloque intermedio texto ocupa primera columna en md -->
-      <div class="col-span-1 flex flex-col justify-center text-center sm:text-left">
-        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{teamIntroTitle}</h3>
-        <p class="text-gray-600 dark:text-gray-300 mb-4">{teamIntroText}</p>
-        <a href="https://vancouvermindbody.com/programs/" class="text-gym-500 hover:underline font-semibold">{teamOutroCta}</a>
-      </div>
-
-      <!-- Resto de los miembros -->
-      {members.slice(2).map((member) => (
-        <div class="relative group aspect-square overflow-hidden rounded-xl shadow-lg transform transition hover:scale-105">
-          <ImageComponent
-            src={member.image.default}
-            alt={member.name}
-            class="w-full h-full object-cover"
-            loading="lazy"
-          />
-          <div class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
-            <h3 class="text-lg font-bold">{member.name}</h3>
-            <p class="text-sm italic mt-1">{member.role}</p>
-            <p class="text-sm mt-2">{member.description}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-
   </div>
 </section>

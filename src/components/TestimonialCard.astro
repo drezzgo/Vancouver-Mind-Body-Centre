@@ -1,0 +1,38 @@
+---
+export interface Props {
+    stars?: number;
+    text?: string;
+    name?: string;
+}
+
+const {name, stars = 5, text } = Astro.props;
+---
+<figure
+  class="bg-old-brick-900 rounded-2xl shadow-lg p-6 flex flex-col h-full"
+>
+  <!-- Cita -->
+  <blockquote class="text-white mb-6 flex-1">
+    <p class="leading-relaxed text-base">{text}</p>
+  </blockquote>
+
+  <!-- Pie de tarjeta -->
+  <div class="flex items-center">
+    <div class="flex justify-between items-center w-full">
+        <figcaption class="mt-4">
+            <div class="flex items-center gap-1 mb-2">
+            {Array.from({ length: stars }).map((_, i) => (
+                <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4 text-yellow-400"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                >
+                <path d="M12 .587l3.668 7.568L24 9.423l-6 5.848L19.335 24 12 19.897 4.665 24 6 15.271 0 9.423l8.332-1.268z"/>
+                </svg>
+            ))}
+            </div>
+            <p class="prose font-semibold text-white text-sm">{name}</p>
+        </figcaption>
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="size-12 text-white"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 5a2 2 0 0 1 2 2v6c0 3.13 -1.65 5.193 -4.757 5.97a1 1 0 1 1 -.486 -1.94c2.227 -.557 3.243 -1.827 3.243 -4.03v-1h-3a2 2 0 0 1 -1.995 -1.85l-.005 -.15v-3a2 2 0 0 1 2 -2z" /><path d="M18 5a2 2 0 0 1 2 2v6c0 3.13 -1.65 5.193 -4.757 5.97a1 1 0 1 1 -.486 -1.94c2.227 -.557 3.243 -1.827 3.243 -4.03v-1h-3a2 2 0 0 1 -1.995 -1.85l-.005 -.15v-3a2 2 0 0 1 2 -2z" /></svg>
+  </div>
+</figure>

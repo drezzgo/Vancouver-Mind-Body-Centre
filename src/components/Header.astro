@@ -38,7 +38,7 @@ const {
     <div class="flex gap-0.5 px-0.5 bg-dark dark:bg-white text-sm font-semibold text-white rounded-full">
         <button
         type="button"
-        class="group relative flex items-center px-5 my-0.5 bg-gym-500 text-white rounded-full transition-all duration-300 ease-in-out hover:bg-gym-600 hover:shadow-md overflow-hidden"
+        class="group relative flex items-center px-5 my-0.5 bg-old-brick-900 text-white rounded-full transition-all duration-300 ease-in-out hover:bg-old-brick-700 hover:shadow-md overflow-hidden"
         id="cta-btn"
         >
         <span class="relative z-10 transition-transform">
@@ -55,27 +55,26 @@ const {
         }
       });
     </script>
-<script>
+<script type="module">
   import gsap from 'gsap';
 
+  window.addEventListener('DOMContentLoaded', () => {
     const logo = document.getElementById('isotype');
-
-    logo.addEventListener('mouseenter', () => {
-    gsap.to(logo,
-        {
-        rotate: 180,
-        duration: 0.8,
-        ease: 'power2.out'
-        }
-    );
-    });
-    logo.addEventListener('mouseleave', () => {
-        gsap.to(logo,
-        {
-            rotate: 0,
-            duration: 0.8,
-            ease: 'power2.out'
-        }
-        );
-    });
+    if (logo) {
+      logo.addEventListener('mouseenter', () => {
+        gsap.to(logo, {
+          rotate: 180,
+          duration: 0.8,
+          ease: 'power2.out'
+        });
+      });
+      logo.addEventListener('mouseleave', () => {
+        gsap.to(logo, {
+          rotate: 0,
+          duration: 0.8,
+          ease: 'power2.out'
+        });
+      });
+    }
+  });
 </script>
