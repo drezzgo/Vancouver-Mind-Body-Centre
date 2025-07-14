@@ -3,18 +3,19 @@ import { Image } from 'astro:assets';
 import logo from '../assets/LogoVancouver.svg';
 import NavLink from './NavLink.astro';
 
+export interface Props {
+  navLinks?: { href: string; label: string }[];
+  ctaLabel?: string;
+  logoSize?: number;
+}
+
 const {
-  navLinks = [
-    { href: '#home', label: 'Home' },
-    { href: '#about', label: 'About Us' },
-    { href: '#steps', label: 'Steps' },
-    { href: '#team', label: 'Team' },
-  ],
+  navLinks = [],
   ctaLabel = 'TRY NOW',
   logoSize = 24,
 } = Astro.props;
 ---
-<header class="w-full flex justify-center gap-0.5 fixed top-0 z-50">
+<header class="w-full flex justify-center backdrop-blur gap-0.5 fixed top-0 z-50">
     
     <div class="p-2 bg-stone-800 dark:bg-white rounded-full">
     <Image
@@ -47,17 +48,17 @@ const {
         <span class="absolute left-5 bottom-1 h-[2px] w-0 bg-white group-hover:w-[calc(100%-2.5rem)] rounded-full transition-all duration-300 ease-in-out"></span>
         </button>
     </div>
-    <script type="module">
-      document.getElementById('cta-btn')?.addEventListener('click', () => {
-        const el = document.getElementById('form-container');
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
+
+<script>
+  document.getElementById('cta-btn')?.addEventListener('click', () => {
+        const target = document.getElementById('form-section');
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
         }
       });
-    </script>
+</script>
 <script type="module">
   import gsap from 'gsap';
-
   window.addEventListener('DOMContentLoaded', () => {
     const logo = document.getElementById('isotype');
     if (logo) {
@@ -78,3 +79,4 @@ const {
     }
   });
 </script>
+</header>

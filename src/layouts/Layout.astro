@@ -69,16 +69,9 @@ import Footer from '@/components/Footer.astro';
         height="0" width="0" style="display:none;visibility:hidden">
       </iframe>
     </noscript>
-    <header>
-      <Header 
-        navLinks={[
-          { href: 'https://vancouvermindbody.com/about/', label: 'About Us' },
-          { href: '#team', label: 'Instructors' },
-        ]}
-        ctaLabel="Book Now"
-      />
-    </header>
-
+    <Header 
+      ctaLabel="Book Now"
+    />
     <main id="main-content">
       <slot />
     </main>

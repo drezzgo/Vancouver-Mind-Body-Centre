@@ -39,7 +39,7 @@ const {
 
     <!-- Encabezado de la sección -->
     <header class="text-center">
-      <h2 id="team-title" class="uppercase text-old-brick-900 font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight">
+      <h2 id="team-title" class="capitalize text-old-brick-900 font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight">
         {title}
       </h2>
       <p class="mt-4 dark:text-slate-800 max-w-2xl mx-auto">
@@ -65,6 +65,11 @@ const {
             src={member.image}
             alt={member.name}
             class="w-full h-64 object-cover"
+            class:list={{
+              'object-top': i !== 1,
+              'object-bottom': i === 3
+            }
+          }
             loading="lazy"
             width={member.image.width}
             height={member.image.height}
