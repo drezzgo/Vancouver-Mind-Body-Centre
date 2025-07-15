@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import vmbc1 from '../assets/images/media/VMBC_1.webp';
+import vmbc2 from '../assets/images/media/VMBC_2.webp';
+import vmbc3 from '../assets/images/media/VMBC_3.webp';
+import vmbc4 from '../assets/images/media/VMBC_4.webp';
+import vmbc5 from '../assets/images/media/VMBC_5.webp';
+
+export interface Props {
+  instagram: string;
+}
+
+const media = [vmbc1, vmbc2, vmbc3, vmbc4, vmbc5];
+const { instagram } = Astro.props;
+---
+
+<section class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 py-12">
+    <div class="flex flex-col items-center text-center space-y-4 justify-center">
+        <div class="flex gap-1">
+            {Array.from({ length: 3 }).map((_, i) => (
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4 text-old-brick-900"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    >
+                    <path d="M12 .587l3.668 7.568L24 9.423l-6 5.848L19.335 24 12 19.897 4.665 24 6 15.271 0 9.423l8.332-1.268z"/>
+                    </svg>
+            ))}
+        </div>
+
+        <p class="uppercase text-sm font-semibold">VMBC training</p>
+        <p class="uppercase text-3xl sm:text-4xl font-bold leading-tigh">Real people. Real results.</p>
+        <a
+            href={"https://www.instagram.com/" + instagram}
+            target="_blank"
+            rel="noopener"
+            class="group inline-flex flex-col items-center border-2 border-old-brick-900 rounded-2xl p-4 transition-colors duration-300 hover:shadow-lg hover:shadow-old-brick-900/30"
+        >
+            <svg width="28" height="28">
+                <use xlink:href="sprite.svg#instagram" />
+            </svg>
+            <p class="text-red-900 font-semibold">vancouver_mind_body_centre</p>
+        </a>
+    </div>
+    {media.map((image, index) => (
+        <div class="relative w-full aspect-auto object-cover rounded-lg overflow-hidden 
+             shadow-md hover:shadow-xl transition-shadow duration-300">
+            <Image
+                src={image}
+                alt={"Media image " + (index + 1)}
+                class="w-full h-full object-cover"
+                loading="lazy"
+            />
+        </div>
+    ))}
+</section>

@@ -5,6 +5,7 @@ import Forms from "../components/Forms.astro";
 import NewTestimonial from "@/components/NewTestimonial.astro";
 import Team from "@/components/Team.astro";
 import Marquee from "@/components/Marquee.astro";
+import Media from "@/components/Media.astro";
 
 // Import images using import.meta.glob for Astro compatibility
 const images = import.meta.glob('../assets/images/team/*.webp', { eager: true, import: 'default' });
@@ -54,6 +55,7 @@ const teamMembers = [
     speed={20}
 />
   <NewTestimonial/>
+  <Media instagram="vancouver_mind_body_centre"/>
   <Team
     title="Meet your Coaches"
     subtitle="Our instructors bring decades of experience in strength, mobility, and martial arts. We are genuinely passionate for helping you move better, feel stronger, and stay consistent. Get to know the team behind your next breakthrough.."
