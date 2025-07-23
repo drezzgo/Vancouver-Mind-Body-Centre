@@ -6,6 +6,7 @@ export interface Props {
   address?: string;
   description?: string;
   sectionId?: string;
+  button?: string;
 }
 
 const {
@@ -13,22 +14,20 @@ const {
   subtitle = 'Group Fitness | Personal Training | Martial Arts',
   address = '6682 Main SF',
   description = 'Quis id ex adipisicing tempor id aliqua sit eu voluptate irure...',
-  sectionId = 'Hero'
+  sectionId = 'Hero',
+  button = 'First class for $0',
 } = Astro.props;
 ---
 
 <section
   id={sectionId}
-  class="relative w-full flex flex-col gap-6 overflow-hidde"
+  class="relative w-full overflow-hidden flex flex-col gap-6"
 >
 
-  <div class="block md:hidden w-full">  
+  <div class="block md:hidden">  
     <video  
-      autoplay  
-      muted  
-      loop  
-      playsinline  
-      class="w-full h-auto object-cover rounded-b-2xl"  
+      autoplay muted loop playsinline  
+      class="w-full h-auto object-cover"  
     >  
       <source  
         src="https://pub-e99d4e6e55b14d18816edeb39b164ac6.r2.dev/hero-background-vancouvermindbody.mp4"  
@@ -56,15 +55,24 @@ const {
     
    <div class="grid grid-cols-1 gap-5">
       <div class="space-y-2 md:pt-20 " >
+        <p class="md:hidden text-lg font-semibold text-stone-800">{subtitle}</p>
         <h1 class="capitalize font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-old-brick-800 md:text-white">{title}</h1>
-        <p class="text-lg sm:text-xl md:text-2xl font-semibold text-stone-800 md:text-white">{subtitle}</p>
-        <a href="https://www.google.com/maps/place/Vancouver+Mind-Body+Centre+(VMBC)/@49.2239899,-123.1038841,17z/data=!3m2!4b1!5s0x5486746a3f6c0445:0x157bebac1ffb7e3e!4m6!3m5!1s0x548673f8ac09a673:0x1f5bb2f281e4e969!8m2!3d49.2239899!4d-123.1013092!16s%2Fg%2F1tglyp5l?entry=ttu&g_ep=EgoyMDI1MDYyMy4yIKXMDSoASAFQAw%3D%3D" class="text-sm sm:text-base md:text-lg lg:text-xl text-stone-800 md:text-white">
+        <p class="hidden md:block text-2xl font-semibold text-stone-800 md:text-white">{subtitle}</p>
+        <a href="https://www.google.com/maps/place/Vancouver+Mind-Body+Centre+(VMBC)/@49.2239899,-123.1038841,17z/data=!3m2!4b1!5s0x5486746a3f6c0445:0x157bebac1ffb7e3e!4m6!3m5!1s0x548673f8ac09a673:0x1f5bb2f281e4e969!8m2!3d49.2239899!4d-123.1013092!16s%2Fg%2F1tglyp5l?entry=ttu&g_ep=EgoyMDI1MDYyMy4yIKXMDSoASAFQAw%3D%3D" class="text-sm sm:text-base md:text-lg lg:text-xl
+             text-stone-800 hover:underline md:text-white">
           {address}
         </a>
         <p class="hidden lg:block text-stone-800 md:text-white max-w-2xl prose">{description}</p>
       </div>
 
       <p class="row-span-2 lg:hidden prose text-justify indent-6 font-semibold text-stone-800 md:text-white">{description}</p>
+
+      <div class="self-start">
+        <a href="" class="inline-block whitespace-nowrap bg-old-brick-800 dark:bg-old-brick-700
+              text-white font-semibold py-3 px-6 rounded-full transition hover:bg-old-brick-900">
+          {button}
+        </a>
+      </div>
     </div>
     
     <div class="flex justify-center">
