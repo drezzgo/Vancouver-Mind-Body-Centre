@@ -6,6 +6,7 @@ import NewTestimonial from "@/components/NewTestimonial.astro";
 import Team from "@/components/Team.astro";
 import Marquee from "@/components/Marquee.astro";
 import Media from "@/components/Media.astro";
+import FormsUs from "@/components/FormsUs.astro";
 
 // Import images using import.meta.glob for Astro compatibility
 const images = import.meta.glob('../assets/images/team/*.webp', { eager: true, import: 'default' });
@@ -51,6 +52,7 @@ const teamMembers = [
     button="First Class for $0"
   />
   <Forms/>
+  <FormsUs/>
   <Marquee
     items={['TEAM TRAINING','★','LIFE CHANGING','★','MEMBERSHIP','★','TEAM TRAINING','★','LIFE CHANGING','★','MEMBERSHIP','★']}
     speed={20}

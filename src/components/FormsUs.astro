@@ -1,0 +1,133 @@
+<!-- Backdrop -->
+<div
+  id="contact-modal-backdrop"
+  class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden z-50"
+  aria-hidden="true"
+></div>
+
+<!-- Modal -->
+<div
+  id="contact-modal"
+  role="dialog"
+  aria-modal="true"
+  class="fixed inset-0 flex items-center justify-center p-4 hidden z-50"
+>
+  <div
+    id="modal-content"
+    class="
+      bg-white
+      rounded-2xl
+      shadow-2xl
+      w-full max-w-lg
+      overflow-hidden
+      transform scale-95 opacity-0
+      transition-all duration-300
+      focus:outline-none
+    "
+  >
+    <!-- Header -->
+    <div class="flex items-center justify-between px-6 py-4 bg-old-brick-800">
+      <h2 class="text-2xl font-bold text-white">Get in Touch</h2>
+      <button
+        id="modal-close"
+        aria-label="Close modal"
+        class="text-white hover:text-old-brick-200 transition-colors text-2xl leading-none"
+      >
+        &times;
+      </button>
+    </div>
+
+    <!-- Formulario apuntando a FormSubmit -->
+    <form
+      id="contact-form"
+      action="https://formsubmit.co/nicolasospina2963@gmail.com"
+      method="POST"
+      class="px-6 py-6 space-y-5"
+    >
+        <input type="hidden" name="_next" value="https://vancouvermindbody.com" />
+        <input type="hidden" name="_cc" value="nicolas.perezcallejas@gmail.com,agongoraramirez@gmail.com,susanabonales@gmail.com" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="text" name="_honey" style="display: none;" />
+      <!-- Campos -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="full-name" class="block text-sm font-medium text-gray-700">
+            Full Name
+          </label>
+          <input
+            type="text" id="full-name" name="fullName" required
+            class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2
+                   focus:ring-old-brick-500 focus:border-old-brick-500 transition"
+          />
+        </div>
+        <div>
+          <label for="residence" class="block text-sm font-medium text-gray-700">
+            Place of Residence
+          </label>
+          <input
+            type="text" id="residence" name="residence" required
+            class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2
+                   focus:ring-old-brick-500 focus:border-old-brick-500 transition"
+          />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">
+            Email Address
+          </label>
+          <input
+            type="email" id="email" name="email" required
+            class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2
+                   focus:ring-old-brick-500 focus:border-old-brick-500 transition"
+          />
+        </div>
+        <div>
+          <label for="phone" class="block text-sm font-medium text-gray-700">
+            Phone Number
+          </label>
+          <input
+            type="tel" id="phone" name="phone" required
+            class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2
+                   focus:ring-old-brick-500 focus:border-old-brick-500 transition"
+          />
+        </div>
+      </div>
+
+      <div class="flex items-center">
+        <input
+          type="checkbox" id="terms" name="terms" required
+          class="h-4 w-4 text-old-brick-800 border-gray-300 rounded focus:ring-old-brick-500"
+        />
+        <label for="terms" class="ml-2 block text-sm text-gray-700">
+          I accept the
+          <a href="/terms" class="text-old-brick-800 hover:underline">terms &amp; conditions</a>
+        </label>
+      </div>
+
+      <!-- Campos ocultos para FormSubmit -->
+      <input type="hidden" name="_next" value="#thankyou-msg" />
+      <input type="hidden" name="_subject" value="📩 Nuevo contacto desde tu web VMBC" />
+      <input type="hidden" name="_captcha" value="false" />
+
+      <button
+        type="submit"
+        class="w-full bg-old-brick-800 hover:bg-old-brick-700 text-white font-semibold
+               py-3 rounded-full shadow-md transition-all duration-200"
+      >
+        Send Message
+      </button>
+    </form>
+
+    <!-- Mensaje de agradecimiento -->
+    <div
+      id="thankyou-msg"
+      class="px-6 py-6 text-center text-lg font-semibold hidden"
+    >
+      🎉 Thank you! We’ll be in touch soon.
+    </div>
+  </div>
+</div>
+
+<script src="../scripts/gsap/hero.ts"></script>

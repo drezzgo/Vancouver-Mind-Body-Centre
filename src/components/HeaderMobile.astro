@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+import logoSrc from '../assets/LogoVancouver.svg';
+
+export interface Props {
+  navLinks: { href: string; label: string }[];
+  ctaLabel?: string;
+  logoSize?: number;
+}
+
+const {
+  navLinks,
+  ctaLabel = 'Book Now',
+  logoSize = 32,
+} = Astro.props;
+---
+
+<header class="fixed top-0 inset-x-0 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50 md:hidden">
+  <div class="flex items-center justify-between h-16 px-4">
+    <!-- Logo a la izquierda -->
+    <div class="flex-shrink-0">
+      <Image
+        id="mobile-logo"
+        src={logoSrc}
+        alt="Logo Vancouver Mind Body"
+        width={logoSize}
+        class="transition-transform duration-300"
+        loading="eager"
+      />
+    </div>
+
+    <!-- Grupo CTA + Hamburger a la derecha -->
+    <div class="flex items-center space-x-3">
+      <button
+        id="dialog"
+        class="bg-old-brick-800 hover:bg-old-brick-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition"
+        type="button"
+      >
+        {ctaLabel}
+      </button>
+    </div>
+  </div>
+</header>
+
