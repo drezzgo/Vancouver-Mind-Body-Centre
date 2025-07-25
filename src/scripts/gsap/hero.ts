@@ -31,12 +31,6 @@ import gsap from 'gsap';
   closeBtn.addEventListener('click', closeModal);
   backdrop.addEventListener('click', closeModal);
 
-  // Cerrar al enviar
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    // Aquí podrías enviar los datos a tu API...
-    closeModal();
-  });
 
   // Cerrar con Escape
   window.addEventListener('keydown', e => {
