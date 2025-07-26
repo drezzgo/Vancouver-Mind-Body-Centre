@@ -122,7 +122,15 @@
   const thankYouMsg = document.getElementById('thankyou-msg');
 form.addEventListener('submit', async e => {
     e.preventDefault();
-    // valida términos si tienes checkbox
+
+    const phoneInput = document.getElementById('phone');
+    const phoneValue = phoneInput.value.trim();
+
+    if (!phoneValue.startsWith('+')) {
+      alert('Please include your country code (e.g. +1, +44, etc.)');
+      phoneInput.focus();
+      return;
+    }
     const terms = document.getElementById('terms');
     if (terms && !terms.checked) {
       alert('You must accept the terms & conditions.');
