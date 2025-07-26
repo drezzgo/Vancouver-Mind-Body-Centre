@@ -40,22 +40,15 @@
     <!-- Formulario apuntando a FormSubmit -->
     <form
       id="contact-form"
-      action="https://formsubmit.co/nicolasospina2963@gmail.com"
-      method="POST"
       class="px-6 py-6 space-y-5"
     >
-        <input type="hidden" name="_next" value="https://vancouvermindbody.com" />
-        <input type="hidden" name="_cc" value="nicolas.perezcallejas@gmail.com,agongoraramirez@gmail.com,susanabonales@gmail.com" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="text" name="_honey" style="display: none;" />
-      <!-- Campos -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label for="full-name" class="block text-sm font-medium text-gray-700">
             Full Name
           </label>
           <input
-            type="text" id="full-name" name="fullName" required
+            type="text" id="name" name="fullName" required
             class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2
                    focus:ring-old-brick-500 focus:border-old-brick-500 transition"
           />
@@ -106,11 +99,6 @@
         </label>
       </div>
 
-      <!-- Campos ocultos para FormSubmit -->
-      <input type="hidden" name="_next" value="#thankyou-msg" />
-      <input type="hidden" name="_subject" value="📩 Nuevo contacto desde tu web VMBC" />
-      <input type="hidden" name="_captcha" value="false" />
-
       <button
         type="submit"
         class="w-full bg-old-brick-800 hover:bg-old-brick-700 text-white font-semibold
@@ -129,3 +117,34 @@
     </div>
   </div>
 </div>
+<script type="module">
+form.addEventListener('submit', async e => {
+    e.preventDefault();
+    // valida términos si tienes checkbox
+    const terms = document.getElementById('terms');
+    if (terms && !terms.checked) {
+      alert('You must accept the terms & conditions.');
+      return;
+    }
+
+    // Usa FormData para no disparar preflight CORS
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch(
+        'https://hooks.zapier.com/hooks/catch/21054742/uuic8fu/',
+        { method: 'POST', body: formData }
+      );
+      if (!res.ok) throw new Error(res.statusText);
+
+      // Oculta form y muestra thank-you
+      form.style.display = 'none';
+      thankYouMsg.classList.remove('hidden');
+      // Cierra modal tras animación
+      setTimeout(closeModal, 300);
+    } catch (err) {
+      console.error('Zapier error:', err);
+      alert('There was an error sending your message. Please try again.');
+    }
+  });
+</script>
