@@ -113,7 +113,7 @@
       id="thankyou-msg"
       class="px-6 py-6 text-center text-lg font-semibold hidden"
     >
-      🎉 Thank you! We’ll be in touch soon!
+      🎉 Thank you! We’ll be in touch soon.
     </div>
   </div>
 </div>
@@ -139,11 +139,9 @@ form.addEventListener('submit', async e => {
       );
       if (!res.ok) throw new Error(res.statusText);
 
-      // Oculta form y muestra thank-you
-      form.style.display = 'none';
-      thankYouMsg.classList.remove('hidden');
-      // Cierra modal tras animación
-      setTimeout(closeModal, 300);
+    // Redirect after success
+    window.location.href = '/thank-you.html';
+
     } catch (err) {
       console.error('Zapier error:', err);
       alert('There was an error sending your message. Please try again.');
