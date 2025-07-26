@@ -44,7 +44,7 @@
     >
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label for="full-name" class="block text-sm font-medium text-gray-700">
+          <label for="name" class="block text-sm font-medium text-gray-700">
             Full Name
           </label>
           <input
@@ -118,6 +118,8 @@
   </div>
 </div>
 <script type="module">
+  const form = document.getElementById('contact-form');
+  const thankYouMsg = document.getElementById('thankyou-msg');
 form.addEventListener('submit', async e => {
     e.preventDefault();
     // valida términos si tienes checkbox
