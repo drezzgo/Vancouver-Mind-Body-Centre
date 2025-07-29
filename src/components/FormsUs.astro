@@ -122,7 +122,15 @@
   const thankYouMsg = document.getElementById('thankyou-msg');
 form.addEventListener('submit', async e => {
     e.preventDefault();
-    // valida términos si tienes checkbox
+
+    const phoneInput = document.getElementById('phone');
+    const phoneValue = phoneInput.value.trim();
+
+    if (!phoneValue.startsWith('+')) {
+      alert('Please include your country code (e.g. +1, +44, etc.)');
+      phoneInput.focus();
+      return;
+    }
     const terms = document.getElementById('terms');
     if (terms && !terms.checked) {
       alert('You must accept the terms & conditions.');
@@ -139,11 +147,9 @@ form.addEventListener('submit', async e => {
       );
       if (!res.ok) throw new Error(res.statusText);
 
-      // Oculta form y muestra thank-you
-      form.style.display = 'none';
-      thankYouMsg.classList.remove('hidden');
-      // Cierra modal tras animación
-      setTimeout(closeModal, 300);
+    // Redirect after success
+    window.location.href = '/thank-you';
+
     } catch (err) {
       console.error('Zapier error:', err);
       alert('There was an error sending your message. Please try again.');
