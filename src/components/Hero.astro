@@ -53,9 +53,9 @@ const {
   <!-- Contenido sobre video+overlay -->
   <div class="relative z-20 w-full max-w-8xl lg:max-w-5xl mx-auto px-4 lg:px-8 flex flex-col gap-10">
     
-   <div class="grid grid-cols-1 gap-5">
+   <div class="grid grid-cols-1">
       <div class="space-y-2 md:pt-20 " >
-        <p class="md:hidden text-lg font-semibold text-stone-800">{subtitle}</p>
+        <p class="md:hidden text-sm font-semibold text-stone-800">{subtitle}</p>
         <h1 class="capitalize font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-old-brick-800 md:text-white">{title}</h1>
         <p class="hidden md:block text-2xl font-semibold text-stone-800 md:text-white">{subtitle}</p>
         <a href="https://www.google.com/maps/place/Vancouver+Mind-Body+Centre+(VMBC)/@49.2239899,-123.1038841,17z/data=!3m2!4b1!5s0x5486746a3f6c0445:0x157bebac1ffb7e3e!4m6!3m5!1s0x548673f8ac09a673:0x1f5bb2f281e4e969!8m2!3d49.2239899!4d-123.1013092!16s%2Fg%2F1tglyp5l?entry=ttu&g_ep=EgoyMDI1MDYyMy4yIKXMDSoASAFQAw%3D%3D" class="text-sm sm:text-base md:text-lg lg:text-xl
@@ -65,11 +65,11 @@ const {
         <p class="hidden lg:block text-stone-800 md:text-white max-w-2xl prose">{description}</p>
       </div>
 
-      <p class="row-span-2 lg:hidden prose text-justify indent-6 font-semibold text-stone-800 md:text-white">{description}</p>
+      <p class="row-span-2 lg:hidden prose indent-6 font-semibold text-stone-800 md:text-white" style="line-height: 1.5;">{description}</p>
 
       <div class="self-start">
         <button id="dialog" class="inline-block whitespace-nowrap bg-old-brick-800 dark:bg-old-brick-700
-              text-white font-semibold py-3 px-6 rounded-full transition hover:bg-old-brick-900">
+              text-white font-semibold py-3 px-6 mt-5 rounded-full transition hover:bg-old-brick-900">
           {button}
         </button>
       </div> 
