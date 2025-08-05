@@ -4,116 +4,131 @@ const {
   subtitle = "Discover the strength building power of VMBC. Book your next class and feel the difference.",
   widgetId = 'freetrial_a0fa9a84-9224-46d1-ac3b-b48afe77281f'
 } = Astro.props;
+
+// Step 1: Get Sunday of this week
+const today = new Date();
+const startOfWeek = new Date(today);
+startOfWeek.setDate(today.getDate() - today.getDay()); // Sunday = 0
+
+// Step 2: Function to get date string
+function getWeekDate(index: number) {
+  const d = new Date(startOfWeek);
+  d.setDate(d.getDate() + index); // 0 = Sunday, 1 = Monday, ...
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); // "Aug 4"
+}
+
+// Step 3: Your static schedule, dates will be filled dynamically
+const schedule = [
+  {
+    day: 'Sunday',
+    classes: [
+      { time: '10:00 AM - 11:00 AM', class: 'Kettleballs', instructor: 'Tim' },
+    ],
+  },
+  {
+    day: 'Monday',
+    classes: [
+      { time: '7:00 AM - 8:00 AM', class: 'Aikido', instructor: 'Natan Cheifetz' },
+      { time: '8:15 AM - 9:15 AM', class: 'Karate', instructor: 'Kyle' },
+    ],
+  },
+  {
+    day: 'Tuesday',
+    classes: [
+      { time: '9:00 AM - 9:45 AM', class: 'Kettlebells + Flexibility', instructor: 'Tim' },
+      { time: '12:00 PM - 1:00 PM', class: 'Kettlebells', instructor: 'Tim' },
+      { time: '12:00 PM - 1:00 PM', class: 'Core Strength', instructor: 'Natan Cheifetz' },
+    ],
+  },
+  {
+    day: 'Wednesday',
+    classes: [
+      { time: '6:10 PM - 6:40 PM', class: 'Kettlebells 101', instructor: 'Natan Cheifetz' },
+      { time: '7:00 PM - 8:00 PM', class: 'Aikido', instructor: 'Natan Cheifetz' },
+    ],
+  },
+  {
+    day: 'Thursday',
+    classes: [
+      { time: '12:00 PM - 1:00 PM', class: 'Kettlebells', instructor: 'Tim' },
+      { time: '5:30 PM - 6:15 PM', class: 'Core Strength', instructor: 'Natan Cheifetz' },
+      { time: '6:15 PM - 7:15 PM', class: 'Karate & Kudo: Fundamentals (Ages 6-11)', instructor: 'Kyle' },
+      { time: '7:20 - 8:20 PM', class: 'Kudo (Japanese MMA): Youth & Adults (Ages 12+)', instructor: 'Kyle' },
+      
+    ],
+  },
+  {
+    day: 'Friday',
+    classes: [
+      { time: '9:00 AM - 9:45 AM', class: 'Kettlebells + Flexibility', instructor: 'Tim' },
+    ],
+  },
+  {
+    day: 'Saturday',
+    classes: [
+      { time: '8:30 AM - 9:15 AM', class: 'Flexibility', instructor: 'Tim' },
+      { time: '9:30 AM - 10:30 AM', class: 'Aikido', instructor: 'Natan Cheifetz' },
+      { time: '2:00 PM - 3:30 PM', class: 'JKA Karate for Adults', instructor: 'Kyle' },
+    ],
+  },
+];
+
+// Step 4: Inject dates dynamically
+schedule.forEach((entry, i) => {
+  entry.date = getWeekDate(i); // i = 0 (Sunday) to 6 (Saturday)
+});
 ---
+
+<style>
+  .schedule-container {
+    max-width: 50%;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .schedule-container {
+      max-width: 75%;
+    }
+  }
+
+</style>
+
 <section id="form-section" class="bg-white py-12">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
     <!-- Título principal -->
     <h2 class="capitalize text-old-brick-900 font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-2">
       {title}
     </h2>
-    <!-- Subtítulo -->
+    
     <p class="text-stone-800 text-lg sm:text-xl mb-6">
       {subtitle}
     </p>
 
-    <!-- Contenedor del widget de formulario -->
     <div class="mx-auto max-w-3xl rounded-2xl shadow-xl overflow-hidden">
       <div id={widgetId} class="w-full"></div>
     </div>
   </div>
 
-  <!-- Script de carga del widget, solo en cliente -->
-  <script type="module">
-    (function(win, doc, zenJSHost, src, module, partitionApiKey, widgetInstanceId) {
-      win.zenplanner = win.zenplanner || {};
-      win.zenplanner.directLoadArgs = win.zenplanner.directLoadArgs || [];
-      let tryCount = 0, intervalId = null;
-      function afterLoad() {
-        const loader = win.zenplanner.directLoader;
-        if (loader) {
-          clearInterval(intervalId);
-          win.zenplanner.directLoadArgs
-            .filter(a => a.widgetInstanceId === widgetInstanceId)
-            .forEach(() => loader.loadWidget(zenJSHost, module, partitionApiKey, widgetInstanceId));
-        } else if (tryCount++ > 200) {
-          console.error('Zen Planner widget failed to load:', module);
-          clearInterval(intervalId);
-        }
-      }
-      if (!win.zenplanner.directLoader) {
-        win.zenplanner.directLoadArgs.push({ module, partitionApiKey, widgetInstanceId });
-        const s = doc.createElement('script');
-        s.async = true;
-        s.src = `${zenJSHost}/${src}`;
-        doc.head.appendChild(s);
-        intervalId = setInterval(afterLoad, 50);
-      } else {
-        win.zenplanner.directLoader.loadWidget(zenJSHost, module, partitionApiKey, widgetInstanceId);
-      }
-    })(
-      window,
-      document,
-      'https://studio.zenplanner.com',
-      'zenplanner/studio/target/zp-widget-direct.js',
-      'freetrial',
-      '5dcb14da-2715-4c22-8f14-6648fc784219',
-      widgetId
-    );
-  </script>
+  <div class="schedule-container">
+    {schedule.map(entry => (
+      <>
+        <div class="bg-[#20114D] text-white font-bold px-4 py-2 rounded">
+          {entry.day.toUpperCase()}, {entry.date}
+        </div>
 
-  <!-- Estilos específicos para el iframe -->
-  <style>
-    #form-section iframe {
-      width: 100% !important;
-      max-width: 100% !important;
-      min-height: 800px !important;
-      border: none;
-    }
-  </style>
+        {entry.classes.map(cls => (
+          <div class="flex items-center justify-between px-4 py-2 border-b">
+            <div>
+              <div class="text-lg font-semibold">{cls.time}</div>
+              <div class="text-sm text-gray-700 font-bold">{cls.class}</div>
+              <div class="text-sm text-gray-600">{cls.instructor}</div>
+            </div>
+            <button id="dialog" class="bg-red-600 text-white px-4 py-2 rounded-full shadow hover:bg-red-700 transition">
+              BOOK
+            </button>
+          </div>
+        ))}
+      </>
+    ))}
+  </div>
 </section>
-
-<div id="freetrial_a0fa9a84-9224-46d1-ac3b-b48afe77281f"></div>
-<script type="text/javascript">
-
-(function(win, doc, zenJSHost, src, module, partitionApiKey, widgetInstanceId) {
-win.zenplanner = win.zenplanner || {};
-win.zenplanner.directLoadArgs = win.zenplanner.directLoadArgs || [];
-var tryCount = 0,
-intervalId = null;
-function afterLoad() {
-if (win.zenplanner.directLoader !== undefined && window.zenplanner.directLoader !== null) {
-clearInterval(intervalId);
-for (var i = 0, l = win.zenplanner.directLoadArgs.length; l > i; i++) {
-if (win.zenplanner.directLoadArgs[i].widgetInstanceId === widgetInstanceId) {
-win.zenplanner.directLoader.loadWidget(zenJSHost, module, partitionApiKey, widgetInstanceId);
-}
-}
-} else if (tryCount++ > 200) {
-console.log('Zen Planner widget : ' + module + ', failed to load.');
-clearInterval(intervalId);
-}
-}
-if (win.zenplanner.directLoader === undefined || win.zenplanner.directLoader === null) {
-win.zenplanner.directLoadArgs.push({
-module: module,
-partitionApiKey: partitionApiKey,
-widgetInstanceId: widgetInstanceId
-});
-var s = doc.createElement('script');
-s.async = 1;
-s.src = zenJSHost + '/' + src;
-doc.head.appendChild(s);
-intervalId = setInterval(afterLoad, 50);
-} else {
-win.zenplanner.directLoader.loadWidget(zenJSHost, module, partitionApiKey, widgetInstanceId);
-}
-})(
-window,
-document,
-'https://studio.zenplanner.com',
-'zenplanner/studio/target/zp-widget-direct.js',
-'freetrial',
-'5dcb14da-2715-4c22-8f14-6648fc784219',
-'a0fa9a84-9224-46d1-ac3b-b48afe77281f'
-);
-</script>
