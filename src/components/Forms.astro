@@ -5,19 +5,9 @@ const {
   widgetId = 'freetrial_a0fa9a84-9224-46d1-ac3b-b48afe77281f'
 } = Astro.props;
 
-// Step 1: Get Sunday of this week
 const today = new Date();
-const startOfWeek = new Date(today);
-startOfWeek.setDate(today.getDate() - today.getDay()); // Sunday = 0
+const todayIndex = today.getDay();
 
-// Step 2: Function to get date string
-function getWeekDate(index: number) {
-  const d = new Date(startOfWeek);
-  d.setDate(d.getDate() + index); // 0 = Sunday, 1 = Monday, ...
-  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); // "Aug 4"
-}
-
-// Step 3: Your static schedule, dates will be filled dynamically
 const schedule = [
   {
     day: 'Sunday',
@@ -28,8 +18,9 @@ const schedule = [
   {
     day: 'Monday',
     classes: [
-      { time: '7:00 AM - 8:00 AM', class: 'Aikido', instructor: 'Natan Cheifetz' },
-      { time: '8:15 AM - 9:15 AM', class: 'Karate', instructor: 'Kyle' },
+      { time: '6:10 PM - 6:40 PM', class: 'Kettlebells 101', instructor: 'Tim' },
+      { time: '7:00 PM - 8:00 PM', class: 'Aikido', instructor: 'Natan Cheifetz' },
+      { time: '8:15 PM - 9:15 PM', class: 'Karate', instructor: 'Kyle' },
     ],
   },
   {
@@ -73,9 +64,13 @@ const schedule = [
   },
 ];
 
-// Step 4: Inject dates dynamically
-schedule.forEach((entry, i) => {
-  entry.date = getWeekDate(i); // i = 0 (Sunday) to 6 (Saturday)
+const reorderedSchedule = [...schedule.slice(todayIndex), ...schedule.slice(0, todayIndex)];
+
+// Add date for each day
+reorderedSchedule.forEach((entry, i) => {
+  const date = new Date(today);
+  date.setDate(today.getDate() + i);
+  entry.date = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); // e.g. "Aug 4"
 });
 ---
 
@@ -110,7 +105,7 @@ schedule.forEach((entry, i) => {
   </div>
 
   <div class="schedule-container">
-    {schedule.map(entry => (
+    {reorderedSchedule.map(entry => (
       <>
         <div class="bg-[#20114D] text-white font-bold px-4 py-2 rounded">
           {entry.day.toUpperCase()}, {entry.date}
