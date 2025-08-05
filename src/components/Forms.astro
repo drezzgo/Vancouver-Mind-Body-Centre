@@ -5,8 +5,9 @@ const {
   widgetId = 'freetrial_a0fa9a84-9224-46d1-ac3b-b48afe77281f'
 } = Astro.props;
 
-const today = new Date();
-const todayIndex = today.getDay();
+const now = new Date();
+const localDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+const todayIndex = localDate.getDay(); // Correct day regardless of timezone
 
 const schedule = [
   {
@@ -69,9 +70,9 @@ const schedule = [
 const reorderedSchedule = [...schedule.slice(todayIndex), ...schedule.slice(0, todayIndex)];
 
 reorderedSchedule.forEach((entry, i) => {
-  const date = new Date();
-  date.setDate(date.getDate() + i);
-  entry.date = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); 
+  const date = new Date(localDate);
+  date.setDate(localDate.getDate() + i);
+  entry.date = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 });
 ---
 
