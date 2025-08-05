@@ -68,11 +68,10 @@ const schedule = [
 
 const reorderedSchedule = [...schedule.slice(todayIndex), ...schedule.slice(0, todayIndex)];
 
-// Add date for each day
 reorderedSchedule.forEach((entry, i) => {
-  const date = new Date(today);
-  date.setDate(today.getDate() + i);
-  entry.date = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); // e.g. "Aug 4"
+  const date = new Date();
+  date.setDate(date.getDate() + i);
+  entry.date = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); 
 });
 ---
 
